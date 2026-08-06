@@ -248,9 +248,16 @@ Bài báo mới đã được lưu vào hệ thống RAG và sẵn sàng cho vi�
                     <span className="code-font" style={{ fontSize: '0.7rem', color: '#38bdf8' }}>
                       {(p.paper_id || 'doi').slice(0, 22)}
                     </span>
-                    <span style={{ fontSize: '0.65rem', color: 'var(--text-muted)' }}>
-                      {p.published || '2026'}
-                    </span>
+                    <a
+                      href={p.abs_url || (p.paper_id ? `https://doi.org/${p.paper_id.replace(/^doi:/, '')}` : `https://search.crossref.org/?q=${encodeURIComponent(p.title || '')}`)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      title="Open paper link on Crossref"
+                      style={{ fontSize: '0.72rem', color: '#38bdf8', textDecoration: 'none', padding: '2px 6px', background: 'rgba(56, 189, 248, 0.12)', borderRadius: '4px' }}
+                    >
+                      🔗 Open ↗
+                    </a>
                   </div>
 
                   <div style={{ fontSize: '0.82rem', fontWeight: 600, color: '#ffffff', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden', lineHeight: 1.3 }}>
@@ -433,13 +440,35 @@ Bài báo mới đã được lưu vào hệ thống RAG và sẵn sàng cho vi�
                       Retrieved Ground Truth Citations ({msg.sources.length}):
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                      {msg.sources.map((src, idx) => (
-                        <div key={idx} style={{ background: 'rgba(0, 0, 0, 0.35)', padding: '10px 12px', borderRadius: '8px', fontSize: '0.78rem', borderLeft: '3px solid #06b6d4' }}>
-                          <div style={{ color: '#38bdf8', fontWeight: 600, marginBottom: '2px' }}>{src.title}</div>
-                          <div style={{ color: 'var(--text-muted)' }}>Authors: {src.authors}</div>
-                          <div style={{ color: 'var(--text-secondary)', marginTop: '4px', fontStyle: 'italic' }}>"{src.summary_snippet}"</div>
-                        </div>
-                      ))}
+                      {msg.sources.map((src, idx) => {
+                        const linkUrl = src.url || src.abs_url || (src.doi || src.paper_id ? `https://doi.org/${(src.doi || src.paper_id).replace(/^doi:/, '')}` : `https://search.crossref.org/?q=${encodeURIComponent(src.title || '')}`);
+                        return (
+                          <div key={idx} style={{ background: 'rgba(0, 0, 0, 0.35)', padding: '10px 12px', borderRadius: '8px', fontSize: '0.78rem', borderLeft: '3px solid #06b6d4' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2px' }}>
+                              <a
+                                href={linkUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{ color: '#38bdf8', fontWeight: 600, textDecoration: 'underline' }}
+                              >
+                                {src.title} 🔗
+                              </a>
+                            </div>
+                            <div style={{ color: 'var(--text-muted)' }}>Authors: {src.authors}</div>
+                            <div style={{ color: 'var(--text-secondary)', marginTop: '4px', fontStyle: 'italic' }}>"{src.summary_snippet}"</div>
+                            <div style={{ marginTop: '6px' }}>
+                              <a
+                                href={linkUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{ fontSize: '0.7rem', color: '#38bdf8', textDecoration: 'none', background: 'rgba(56, 189, 248, 0.12)', padding: '3px 8px', borderRadius: '4px', display: 'inline-flex', alignItems: 'center', gap: '4px' }}
+                              >
+                                🔗 Open Article on Crossref ↗
+                              </a>
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 )}
@@ -572,6 +601,51 @@ Bài báo mới đã được lưu vào hệ thống RAG và sẵn sàng cho vi�
                   <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '4px' }}>PRIMARY CATEGORY</div>
                   <div style={{ fontSize: '0.85rem', color: '#ffffff' }}>{selectedSourceDetail.primary_category || 'Crossref'}</div>
                 </div>
+              </div>
+
+              {/* Action Buttons: Open Link & Open PDF */}
+              <div style={{ marginTop: '12px', paddingTop: '16px', borderTop: '1px solid var(--border-card)', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                <a
+                  href={selectedSourceDetail.abs_url || (selectedSourceDetail.paper_id ? `https://doi.org/${selectedSourceDetail.paper_id.replace(/^doi:/, '')}` : `https://search.crossref.org/?q=${encodeURIComponent(selectedSourceDetail.title || '')}`)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    padding: '10px 18px',
+                    background: 'linear-gradient(135deg, #06b6d4, #3b82f6)',
+                    borderRadius: '8px',
+                    color: '#ffffff',
+                    fontWeight: 600,
+                    fontSize: '0.88rem',
+                    textDecoration: 'none',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px'
+                  }}
+                >
+                  🔗 Open Paper Link on Crossref ↗
+                </a>
+                {selectedSourceDetail.pdf_url && (
+                  <a
+                    href={selectedSourceDetail.pdf_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      padding: '10px 18px',
+                      background: 'rgba(255, 255, 255, 0.1)',
+                      border: '1px solid var(--border-card)',
+                      borderRadius: '8px',
+                      color: '#ffffff',
+                      fontWeight: 600,
+                      fontSize: '0.88rem',
+                      textDecoration: 'none',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '8px'
+                    }}
+                  >
+                    📄 Open PDF Document ↗
+                  </a>
+                )}
               </div>
             </div>
           </div>

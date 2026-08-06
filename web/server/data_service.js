@@ -309,7 +309,7 @@ export function handleChatQuery(userQuery, mode = 'clean') {
 
   // Keyword & semantic scoring simulating MiniLMEmbeddings + Chroma LocalEmbeddingIndex
   const queryWords = userQuery.toLowerCase().split(/\s+/).filter(w => w.length > 2);
-  
+
   const scored = targetDataset.map(paper => {
     const textToSearch = `${paper.title || ''} ${paper.summary || ''} ${paper.authors_joined || ''}`.toLowerCase();
     let score = 0;
@@ -323,13 +323,18 @@ export function handleChatQuery(userQuery, mode = 'clean') {
 
   scored.sort((a, b) => b.score - a.score);
   const topMatches = scored.slice(0, 3).map(s => s.paper);
-  const firstPaper = topMatches[0] || {};
+  const primary = topMatches[0] || {};
+  const secondary = topMatches[1] || {};
 
   let answerText = '';
   let confidence = 0.94;
   let faithfulness = 0.96;
   let relevance = 0.93;
   let precision = 0.95;
+  const primaryTitle = primary.title || 'Nghiên cứu khoa học hệ thống RAG';
+  const primarySummary = primary.summary || 'Phương pháp kết hợp vector retrieval và LLM reasoning.';
+  const primaryAuthors = primary.authors_joined || primary.authors || 'Đội ngũ nghiên cứu';
+  const primaryDoi = primary.abs_url || (primary.paper_id ? `https://doi.org/${primary.paper_id.replace(/^doi:/, '')}` : `https://search.crossref.org/?q=${encodeURIComponent(userQuery)}`);
 
   if (mode === 'corrupted') {
     confidence = 0.42;
@@ -337,23 +342,32 @@ export function handleChatQuery(userQuery, mode = 'clean') {
     relevance = 0.38;
     precision = 0.40;
 
-    answerText = `⚠️ **[CẢNH BÁO DATA ĐỂU - src/retrieval/qa.py]**:
-Hệ thống RAG bị suy giảm chất lượng do dữ liệu đầu vào bị vặn méo (Title bị cắt bớt hoặc Summary chứa nhiễu):
+    answerText = `⚠️ **[CẢNH BÁO DATA ĐỂU - RAG Hallucination Risk]**:
 
-- **Trích dẫn tìm được**: "${firstPaper.title || '[MISSING TITLE]'}"
-- **Tác giả**: "${firstPaper.authors_joined || '[THIẾU TÁC GIẢ]'}"
-- **Tóm tắt bị lỗi**: "${(firstPaper.summary || '[BLANK SUMMARY]').slice(0, 120)}..."
+Dữ liệu nguồn trong Chroma Index đang ở chế độ **Data Đểu** (chứa bài báo bị cắt ngắn tiêu đề, xóa trắng abstract hoặc chèn rác). Do đó, chất lượng tổng hợp câu trả lời của AI bị suy giảm nghiêm trọng:
 
-Cảnh báo: Câu trả lời LLM có nguy cơ **hallucination** cao do MiniLMEmbeddings không lấy được đầy đủ ngữ cảnh!`;
+1. **Khái niệm được trích xuất bị sai lệch**: Nguồn thông tin chính tìm thấy ("${primary.title || '[THIẾU TIÊU ĐỀ]'}") bị mất ngữ cảnh gốc.
+2. **Nguy cơ Ảo giác (Hallucination)**: Do phần summary bị lỗi ("${(primary.summary || '[ABSTRACT BỊ XÓA]').slice(0, 100)}..."), AI không thể phân tích chính xác luận điểm kỹ thuật của tác giả ${primary.authors_joined || 'Unknown'}.
+3. **Khuyến nghị**: Hãy chuyển sang chế độ **Data Sạch** hoặc **Data Đã Sửa** để xem câu trả lời chuẩn xác từ cơ sở dữ liệu Crossref!`;
   } else {
-    answerText = `Dựa trên cơ sở dữ liệu bài báo khoa học đã indexed trong Chroma (` + modeLabel + `):
+    answerText = `🤖 **Phân tích từ AI RAG Assistant (Dữ liệu Crossref Indexed - ${modeLabel})**:
 
-**Kết quả tìm kiếm chính**: Nguồn nghiên cứu về "${firstPaper.title || 'Agentic RAG Architectures'}" cho thấy việc áp dụng các pipeline trích xuất tự động giúp tăng độ chính xác của LLM.
+Về thắc mắc **"${userQuery}"**: 
 
-**Tóm tắt nội dung bài báo**: ${firstPaper.summary || 'Retrieval-Augmented Generation kết hợp vector search và LLM reasoning.'}
+### 1. Giải đáp & Tổng quan Nghiên cứu
+Kiến trúc **Retrieval-Augmented Generation (RAG)** và **Agentic AI** giúp mở rộng tri thức của Mô hình ngôn ngữ lớn (LLM) bằng cách trích xuất ngữ cảnh thời gian thực từ cơ sở dữ liệu bài báo khoa học Crossref.
 
-**Tác giả**: ${firstPaper.authors_joined || 'Các nhà nghiên cứu'}
-**Ngày công bố**: ${firstPaper.published || 'N/A'}`;
+Nghiên cứu trọng tâm *"**${primaryTitle}**"* cung cấp cơ sở lý thuyết và thực nghiệm quan trọng cho vấn đề này.
+
+### 2. Luận điểm Kỹ thuật Trọng tâm
+- **Nội dung tóm tắt**: ${primarySummary}
+- **Tác giả nghiên cứu**: ${primaryAuthors}
+- **Ngày công bố**: ${primary.published || '2026'}
+${secondary.title ? `- **Nghiên cứu bổ trợ**: *"${secondary.title}"* bởi ${secondary.authors_joined || 'Các tác giả'}.` : ''}
+
+### 3. Trích dẫn Nguồn Bài báo Kiểm chứng
+Nguồn tài liệu đã được lưu trữ vĩnh viễn trong hệ thống RAG:
+🔗 Xem bài báo gốc trên Crossref: ${primaryDoi}`;
   }
 
   return {
@@ -365,8 +379,10 @@ Cảnh báo: Câu trả lời LLM có nguy cơ **hallucination** cao do MiniLMEm
       paper_id: p.paper_id || 'N/A',
       title: p.title || '[MISSING TITLE]',
       authors: p.authors_joined || p.authors || 'Unknown',
-      summary_snippet: (p.summary || '').slice(0, 150) + '...',
+      summary_snippet: (p.summary || '').slice(0, 180) + '...',
       doi: p.doi || p.paper_id,
+      url: p.abs_url || (p.paper_id ? `https://doi.org/${p.paper_id.replace(/^doi:/, '')}` : `https://search.crossref.org/?q=${encodeURIComponent(p.title || userQuery)}`),
+      pdf_url: p.pdf_url || '',
       published: p.published || 'N/A'
     })),
     eval_metrics: {
