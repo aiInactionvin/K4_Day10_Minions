@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, fields
 import hashlib
 import html
 import json
@@ -359,4 +359,10 @@ def load_raw_records(path: Path) -> list[PaperRecord]:
     if not isinstance(data, list):
         raise ValueError(f"Expected JSON list in {path}, got {type(data).__name__}")
 
-    return [PaperRecord(**item) for item in data]
+    valid_fields = {f.name for f in fields(PaperRecord)}
+    records: list[PaperRecord] = []
+    for item in data:
+        if isinstance(item, dict):
+            clean_item = {k: v for k, v in item.items() if k in valid_fields}
+            records.append(PaperRecord(**clean_item))
+    return records

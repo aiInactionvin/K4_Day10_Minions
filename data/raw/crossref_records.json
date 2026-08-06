@@ -1,15 +1,12 @@
 [
   {
     "paper_id": "doi:10.1016/j.crossref.6-b-i-b-o-v-t-k--mshc8pgs",
-    "doi": "doi:10.1016/j.crossref.6-b-i-b-o-v-t-k--mshc8pgs",
     "title": "Advances in 6 bài báo về tự kỷ : A Crossref Bibliometric & Technical Study",
     "summary": "Abstract This paper investigates modern architectures for 6 bài báo về tự kỷ . We present an agentic retrieval framework combining dense vector embeddings, automated Crossref metadata validation, and observational quality gates for data pipelines.",
-    "authors_joined": "Seth E. Hung, Minions Research Team",
     "authors": [
       "Seth E. Hung",
       "Minions Research Team"
     ],
-    "categories_joined": "Computer Science, Artificial Intelligence, Data Observability",
     "categories": [
       "Computer Science",
       "Artificial Intelligence",
@@ -24,15 +21,12 @@
   },
   {
     "paper_id": "doi:10.1016/j.crossref.2-b-i-b-o-v-t-k--mshc7yp4",
-    "doi": "doi:10.1016/j.crossref.2-b-i-b-o-v-t-k--mshc7yp4",
     "title": "Advances in 2 bài báo về tự kỷ: A Crossref Bibliometric & Technical Study",
     "summary": "Abstract This paper investigates modern architectures for 2 bài báo về tự kỷ. We present an agentic retrieval framework combining dense vector embeddings, automated Crossref metadata validation, and observational quality gates for data pipelines.",
-    "authors_joined": "Seth E. Hung, Minions Research Team",
     "authors": [
       "Seth E. Hung",
       "Minions Research Team"
     ],
-    "categories_joined": "Computer Science, Artificial Intelligence, Data Observability",
     "categories": [
       "Computer Science",
       "Artificial Intelligence",
@@ -47,15 +41,12 @@
   },
   {
     "paper_id": "doi:10.1016/j.crossref.5-b-i-b-o-v-b-o-ph--mshc7aie",
-    "doi": "doi:10.1016/j.crossref.5-b-i-b-o-v-b-o-ph--mshc7aie",
     "title": "Advances in 5 bài báo về béo phì: A Crossref Bibliometric & Technical Study",
     "summary": "Abstract This paper investigates modern architectures for 5 bài báo về béo phì. We present an agentic retrieval framework combining dense vector embeddings, automated Crossref metadata validation, and observational quality gates for data pipelines.",
-    "authors_joined": "Seth E. Hung, Minions Research Team",
     "authors": [
       "Seth E. Hung",
       "Minions Research Team"
     ],
-    "categories_joined": "Computer Science, Artificial Intelligence, Data Observability",
     "categories": [
       "Computer Science",
       "Artificial Intelligence",
@@ -70,15 +61,12 @@
   },
   {
     "paper_id": "doi:10.1016/j.crossref.quantum-retrieval-for-llms-mshc6vob",
-    "doi": "doi:10.1016/j.crossref.quantum-retrieval-for-llms-mshc6vob",
     "title": "Advances in Quantum Retrieval for LLMs: A Crossref Bibliometric & Technical Study",
     "summary": "Abstract This paper investigates modern architectures for Quantum Retrieval for LLMs. We present an agentic retrieval framework combining dense vector embeddings, automated Crossref metadata validation, and observational quality gates for data pipelines.",
-    "authors_joined": "Seth E. Hung, Minions Research Team",
     "authors": [
       "Seth E. Hung",
       "Minions Research Team"
     ],
-    "categories_joined": "Computer Science, Artificial Intelligence, Data Observability",
     "categories": [
       "Computer Science",
       "Artificial Intelligence",
@@ -495,6 +483,407 @@
     "updated": "2026-07-16",
     "abs_url": "https://doi.org/10.1111/exsy.70341",
     "pdf_url": "https://onlinelibrary.wiley.com/doi/pdf/10.1111/exsy.70341",
+    "comment": "Wiley"
+  },
+  {
+    "paper_id": "doi:10.1613/jair.1.18675",
+    "title": "Agentic Large Language Models, a Survey",
+    "summary": "Background: There is great interest in agentic LLMs, large language models that act as agents. Objectives: We review the growing body of work in this area and provide a research agenda. Methods: Agentic LLMs are LLMs that (1) reason, (2) act, and (3) interact. We organize the literature according to these three categories. Results: The research in the first category focuses on reasoning, reflection, and retrieval, aiming to improve decision making; the second category focuses on action models, robots, and tools, aiming for agents that act as useful assistants; the third category focuses on multi-agent systems, aiming for collaborative task solving and simulating interaction to study emergent social behavior. We find that works mutually benefit from results in other categories: retrieval enables tool use, reflection improves multi-agent collaboration, and reasoning benefits all categories. Conclusions: We discuss applications of agentic LLMs and provide an agenda for further research. Important applications are in medical diagnosis, logistics and financial market analysis. Meanwhile, self-reflective agents playing roles and interacting with one another augment the process of scientific research itself. Further, agentic LLMs provide a solution for the problem of LLMs running out of training data: inference-time behavior generates new training states, such that LLMs can keep learning without needing ever larger datasets. We note that there is risk associated with LLM assistants taking action in the real world—safety, liability and security are open problems—while agentic LLMs are also likely to benefit society.",
+    "authors": [
+      "Aske Plaat",
+      "Max Van Duijn",
+      "Niki Van Stein",
+      "Mike Preuss",
+      "Peter Van der Putten",
+      "Kees Joost Batenburg"
+    ],
+    "categories": [],
+    "primary_category": "Crossref",
+    "published": "2025-12-30",
+    "updated": "2026-01-06",
+    "abs_url": "https://doi.org/10.1613/jair.1.18675",
+    "pdf_url": "https://jair.org/index.php/jair/article/download/18675/27253",
+    "comment": "AI Access Foundation"
+  },
+  {
+    "paper_id": "doi:10.52783/anvi.v28.2504",
+    "title": "Long Context RAG: Unlocking the Potential of Large Language Models for Complex Queries",
+    "summary": "Retrieval-augmented generation (RAG) is a breakthrough in AI and has extended the capability to answer complex, knowledge-based questions. As a result of integrating functionalities of retrieval systems with generative large language models (LLMs), RAG systems offer the flexibility of complex responses to queries that demand integration of multiple sources. The traditional RAG systems perform well for open domain question answering and knowledge-base QA tasks. Still, the performance degrades for the long context queries requiring the model to understand it in terms of several domains and interconnect with each other. This paper discusses whether deeper contextual processing of the referred advanced LLMs can help enrich the existing RAG paradigm. Consequently, key contributions involve formulating current deficiencies in processing contextually extensive questions, exploring various ways of context retention integration, and assessing the superiority of refined RAG systems in actual-world domains. Based on a thorough assessment of the applicability of the proposed context-aware RAG system, this paper discusses the ability of the technology to bring about nothing short of a disruptive shift in industries including healthcare LegalTech, as well as academic scholarship. Pausing the conclusions deriving from the presented study are that while the fine-tuned RAG systems significantly help to upgrade the scales of responses’ relevancy and pushing the answers with more accurate approaches to queries, they provide the solutions to the society’s growing requirement for the management of the complex inquiries.",
+    "authors": [
+      "Valentina Porcu"
+    ],
+    "categories": [],
+    "primary_category": "Crossref",
+    "published": "2024-11-28",
+    "updated": "2025-01-31",
+    "abs_url": "https://doi.org/10.52783/anvi.v28.2504",
+    "pdf_url": "https://internationalpubls.com/index.php/anvi/article/download/2504/1672",
+    "comment": "Science Research Society"
+  },
+  {
+    "paper_id": "doi:10.31219/osf.io/b94ng_v1",
+    "title": "Long Text Language Ensemble Models: Extension of Retrieval-Augmented Generation (RAG)",
+    "summary": "Recent advances in long-text language models (LMs), particularly those enhanced with agents extending Retrieval-Augmented Generation (RAG) capabilities, mark a significant leap in natural language processing (NLP). RAG enhances traditional LMs by retrieving accurate up-to-date information from external sources in real-time, addressing a key limitation of Large Language Models (LLMs) that struggle with broader contextual understanding. Unlike LLMs, which perform best when key information is at the input's start or end, RAG enables precise responses to complex, context-dependent queries. This paper explores RAG's advancements, its integration with technologies like virtual and augmented reality (VR/AR), and its philosophical and ethical implications. We also examine its potential to transform education, research, and professional practice. Additionally, we review alternative approaches, including Memory-Augmented Neural Networks (MANNs), knowledge-enhanced LMs, dense retrieval models, hybrid systems, long-context LMs, generative pretraining with prompt engineering, and meta learning. These alternatives offer unique advantages in efficiency, scalability, interpretability, and human-centricity. We compare their strengths, limitations, and applications to RAG systems. The paper concludes with future research directions, proposing an optimized ensemble of alternatives to RAG in the form of an agency construct. This approach aims to extend RAG's capabilities to dynamic sources and better-segmented long texts, paving the way for more robust and context-aware AI systems.",
+    "authors": [
+      "Abiodun Christian Ibiloye"
+    ],
+    "categories": [],
+    "primary_category": "Crossref",
+    "published": "2025-03-18",
+    "updated": "2025-03-18",
+    "abs_url": "https://doi.org/10.31219/osf.io/b94ng_v1",
+    "pdf_url": "",
+    "comment": "Center for Open Science"
+  },
+  {
+    "paper_id": "doi:10.48165/iitmjit.2026.12.1.14",
+    "title": "Large Language Models and Agentic AI: How Modern AI Systems Are Evolving Into Autonomous Agents",
+    "summary": "Large Language Models (LLMs) have undergone a dramatic transformation from static text-completion engines to dynamic, tool-wielding autonomous agents capable of planning, reasoning, and executing multi-step tasks in real-world environments. This paper provides a comprehensive survey of the architectural principles, training paradigms, and emergent capabilities that underpin modern LLMs such as GPT-4o, Claude 3.5 Sonnet, and Gemini 1.5 Pro. We examine the progression from transformer-based language models toward agentic AI systems that integrate memory modules, external tools, and multi-agent coordination frameworks. Key topics include the Retrieval- Augmented Generation (RAG) paradigm, chain-of- thought and tree-of thought prompting strategies, the ReAct framework, and multi-agent orchestration platforms such as AutoGen and CrewAI. We further present a structured experimental comparison of Chain-of-Thought (CoT) and ReAct prompting paradigms across 120 standardized tasks spanning multi-step question answering, logical inference, and knowledge-retrieval scenarios, provide in reproducible methodology and statistical analysis. We also discuss open challenges in safety, alignment, hallucination mitigation, and computational costs associated with large-scale deployment. Our analysis reveals that while agentic AI demonstrates remarkable potential in software engineering, scientific research, and enterprise automation, significant hurdles in reliability, explainability, and ethical governance must be addressed before wide- scale deployment can be responsibly achieved.",
+    "authors": [
+      "Deepti Sharan",
+      "Nehuti"
+    ],
+    "categories": [],
+    "primary_category": "Crossref",
+    "published": "2026-01-01",
+    "updated": "2026-06-03",
+    "abs_url": "https://doi.org/10.48165/iitmjit.2026.12.1.14",
+    "pdf_url": "",
+    "comment": "ACS Publisher"
+  },
+  {
+    "paper_id": "doi:10.63503/j.ijaimd.2026.233",
+    "title": "Retrieval-Augmented Generation (RAG) for Large Language Models: A Comprehensive Survey",
+    "summary": "The Retrieval-Augmented Generation (RAG) paradigm has been proposed as a potent concept that would increase the factual accuracy, reliability, and adaptability of Large Language Models (LLMs) by incorporating external information retrieval and text generation. In comparison to an independent LLM, which leverages solely parametric knowledge, RAG dynamically accesses non-parametric knowledge sources during inference that are up-to-date and are founded on the evidence that was accessed to generate the response. This paper summarizes the foundations of RAG, its architecture, major components (retriever and generator) and an indexing-retrieval-generation methodology. It critically examines retrieval strategies in which sparse, dense and hybrid retrieval are examined with their efficiency trade-offs, semantic insight, interpretability and application to domain-specific tasks including healthcare. The paper further compares RAG with fine-tuning and brings out the differences in updating knowledge, customization and hallucination reduction. Finally, the augmentation strategies, the higher-level techniques iterative, recursive and adaptive retrieval are discussed to solve the complex, multi-step reasoning tasks. In summary, the paper reveals that RAG is a scalable and powerful AI-based solution that is knowledge-intensive.",
+    "authors": [
+      "Tanay Chowdhury"
+    ],
+    "categories": [],
+    "primary_category": "Crossref",
+    "published": "2026-04-08",
+    "updated": "2026-04-16",
+    "abs_url": "https://doi.org/10.63503/j.ijaimd.2026.233",
+    "pdf_url": "https://submissions.adroidjournals.com/index.php/ijaimd/article/download/233/105",
+    "comment": "Adroid Connectz Private Limited"
+  },
+  {
+    "paper_id": "doi:10.1609/aaaiss.v3i1.31254",
+    "title": "Evaluating Large Language Models with RAG Capability: A Perspective from Robot Behavior Planning and Execution",
+    "summary": "After the significant performance of Large Language Models (LLMs) was revealed, their capabilities were rapidly expanded with techniques such as Retrieval Augmented Generation (RAG). Given their broad applicability and fast development, it's crucial to consider their impact on social systems. On the other hand, assessing these advanced LLMs poses challenges due to their extensive capabilities and the complex nature of social systems. In this study, we pay attention to the similarity between LLMs in social systems and humanoid robots in open environments. We enumerate the essential components required for controlling humanoids in problem solving which help us explore the core capabilities of LLMs and assess the effects of any deficiencies within these components. This approach is justified because the effectiveness of humanoid systems has been thoroughly proven and acknowledged. To identify needed components for humanoids in problem-solving tasks, we create an extensive component framework for planning and controlling humanoid robots in an open environment. Then assess the impacts and risks of LLMs for each component, referencing the latest benchmarks to evaluate their current strengths and weaknesses. Following the assessment guided by our framework, we identified certain capabilities that LLMs lack and concerns in social systems.",
+    "authors": [
+      "Jin Yamanaka",
+      "Takashi Kido"
+    ],
+    "categories": [],
+    "primary_category": "Crossref",
+    "published": "2024-05-20",
+    "updated": "2024-05-21",
+    "abs_url": "https://doi.org/10.1609/aaaiss.v3i1.31254",
+    "pdf_url": "https://ojs.aaai.org/index.php/AAAI-SS/article/download/31254/33414",
+    "comment": "Association for the Advancement of Artificial Intelligence (AAAI)"
+  },
+  {
+    "paper_id": "doi:10.34190/ejel.23.4.4044",
+    "title": "Agentic RAG for Personalized Learning: Design of an AI-Powered Learning Agent Using Open-Source Small Language Models",
+    "summary": "This paper presents the design of a personalized learning agent powered by the Agentic RAG technique. The agent can interpret learners’ queries and autonomously decide which tools should be used to generate the most suitable response. When the learner shares an Open Educational Resource (OER) they wish to learn from, the agent first breaks the content into smaller, manageable chunks. These chunks are then indexed sequentially to preserve the natural flow of the text. At the same time, chunks are also converted into vector embeddings that allow semantic retrieval. Depending on the learner’s request, different tools are selected by the agent. For example, when the learner requests learning aids like summaries, quizzes, or flashcards, the agent invokes the corresponding tool. This tool passes the sequentially indexed chunks to a small language model to generate the output. For context-specific queries, another specialized tool that relies on vector indexing and retrieval-augmented generation (RAG), is invoked. Visual question answering is handled by a separate tool that leverages multimodal RAG using a multimodal small language model. This agentic setup improves the accuracy and relevance of responses generated by the agent. To test its agentic behaviour, we probed our agent with a diverse set of questions drawn from four different OERs. We thoroughly examined each response and tracked the tools that got invoked autonomously. We also compared the similarity of summaries produced by our agent against those generated by ChatGPT (GPT-4o) using BERT Score as the evaluation metric. Our findings indicate that the agent consistently selected the appropriate tools and the summaries generated by our agent showed close semantic similarity to those produced by GPT-4o, suggesting that the proposed approach can provide performance reasonably close to a state-of-the-art model. The agent being lightweight resides on learner’s local machine and avoid dependence on cloud-based AI ensuring the privacy of learner’s data. It is affordable as it entirely relies on open source frameworks and small models. As the agent provides personalized support to learners by answering their context-based queries and providing on-demand learning aids, it improves their engagement with the educational content. This research shows that designing agentic AI tools using open-source software to address diverse learning needs is technically and economically feasible as well as educationally valuable.",
+    "authors": [
+      "Shilpi Taneja",
+      "Siddhartha Sankar Biswas",
+      "Bhavya Alankar",
+      "Harleen Kaur"
+    ],
+    "categories": [],
+    "primary_category": "Crossref",
+    "published": "2025-11-05",
+    "updated": "2025-11-29",
+    "abs_url": "https://doi.org/10.34190/ejel.23.4.4044",
+    "pdf_url": "https://academic-publishing.org/index.php/ejel/article/download/4044/2427",
+    "comment": "Academic Conferences and Publishing International Ltd"
+  },
+  {
+    "paper_id": "doi:10.36227/techrxiv.175624551.12254549/v1",
+    "title": "Traditional RAG vs. Agentic RAG: A Comparative Study of Retrieval-Augmented Systems",
+    "summary": "Retrieval-Augmented Generation (RAG) enhances large language models (LLMs) by integrating external knowledge retrieval to improve factual reliability. Traditional RAG employs a fixed, single-pass retrieval process, limiting its ability to handle multi-step reasoning, adaptive queries, and heterogeneous data sources. Agentic RAG extends this framework with autonomous agents that plan, iterate retrieval, integrate tools, and reason over intermediate results. This paper presents a comprehensive comparison of Traditional and Agentic RAG in terms of architecture, capabilities, evaluation metrics, and operational challenges. In addition to synthesizing representative systems, we provide a sideby-side analysis of comparative limitations, failure modes, and corresponding mitigations, mapping domain-specific applications across established and emerging fields. We also outline governance recommendations and propose future research directions, including graph-augmented, multimodal, human-in-the-loop, and domain-specialized Agentic RAG frameworks with standardized model cards. These insights offer both a technical and practical foundation for designing more adaptive, trustworthy, and contextaware retrieval-augmented systems.",
+    "authors": [
+      "Fnu Neha",
+      "Deepshikha Bhati"
+    ],
+    "categories": [],
+    "primary_category": "Crossref",
+    "published": "2025-08-26",
+    "updated": "2026-06-12",
+    "abs_url": "https://doi.org/10.36227/techrxiv.175624551.12254549/v1",
+    "pdf_url": "",
+    "comment": "Institute of Electrical and Electronics Engineers (IEEE)"
+  },
+  {
+    "paper_id": "doi:10.31219/osf.io/ns2v3",
+    "title": "Implementing Retrieval-Augmented Generation (RAG) for Large Language Models to Build Confidence in Traditional Chinese Medicine",
+    "summary": "Many English-speaking individuals exhibit skepticism regarding the efficacy of traditional Chinese medicine (TCM), a bias often embedded in the training data of language models, leading to prejudiced outputs. Implementing Retrieval-Augmented Generation (RAG) within the Llama model provides a novel and significant approach to mitigating this bias through the integration of external, credible sources. The methodology involved collecting a diverse dataset, preprocessing and indexing it, and then integrating it with the Llama model to enhance response generation. Quantitative and qualitative analyses indicated significant improvements in confidence scores, sentiment balance, and content accuracy of TCM-related responses, demonstrating the effectiveness of RAG in reducing biases. The iterative fine-tuning process further refined the model's ability to produce more informed, balanced, and unbiased outputs. The study highlights the potential of RAG to enhance the fairness and reliability of language models, contributing to more equitable representations of culturally significant practices.",
+    "authors": [
+      "Xingcan Su",
+      "Yang Gu"
+    ],
+    "categories": [],
+    "primary_category": "Crossref",
+    "published": "2024-06-11",
+    "updated": "2024-06-11",
+    "abs_url": "https://doi.org/10.31219/osf.io/ns2v3",
+    "pdf_url": "",
+    "comment": "Center for Open Science"
+  },
+  {
+    "paper_id": "doi:10.33166/aetic.2025.05.005",
+    "title": "Clinical Text Augmentation and Generation Using RAG for Large Language Models",
+    "summary": "Large Language Models (LLM) are becoming more essential in clinical text generation, where use of synthetic medical data is environmentally accurate and applicable for real-world healthcare applications. Existing LLMs often lack in specialized optimization and clarity, leading to incorrect outputs. These restrictions can make their references unreliable, particularly for sensitive clinical data. To overcome these problems, this research work suggests integrating generative adversarial networks with LLM to improve clinical data accuracy and reduce hallucinations. LLMs like LLaMA, BERT and GPT are broadly used in clinical settings for tasks such as summarizing patient notes and answering medical queries. Generative Adversarial Networks (GANs) are used to generate realistic synthetic clinical data, aiding privacy and data augmentation. The LDA model is added with GAN to identify the underlying topics in clinical documents, ensuring the synthetic text is coherent and thematically relevant. The use of Retrieval Augmented Generation (RAG) dynamically retrieves current medical knowledge and provides grounding responses with real-time evidence and minimizes outdated information. The first phase focuses on generating and validating synthetic clinical data using GANs and LDA to ensure high quality and domain alignment; the second phase focus on user interaction, where RAG retrieves relevant information in real time to answer queries, and an interactive interface enables seamless engagement and feedback. Continuous evaluation of NLP metrics demonstrates that the proposed Clinical Augmentation Generation and Retrieval Augmented Generation (CAG-RAG) framework outperforms the existing DALL-M approach in generating synthetic clinical text. For diagnosis-related data, the proposed CAG-RAG method achieves improvements of 15.7% in BLEU, 17% in ROUGE-1, and 17% in ROUGE-L scores. For medication-related data, the improvements were 20.8% in BLEU, 17.1% in ROUGE-1, and 17.25% in ROUGE-L. These results highlight the reliability, adaptability, and contextual accuracy for clinical applications.",
+    "authors": [
+      "Nasreen Fathima",
+      "Kavitha Ganesh"
+    ],
+    "categories": [],
+    "primary_category": "Crossref",
+    "published": "2025-10-25",
+    "updated": "2025-11-09",
+    "abs_url": "https://doi.org/10.33166/aetic.2025.05.005",
+    "pdf_url": "",
+    "comment": "International Association for Educators and Researchers (IAER)"
+  },
+  {
+    "paper_id": "doi:10.3390/a18080499",
+    "title": "A Research Landscape of Agentic AI and Large Language Models: Applications, Challenges and Future Directions",
+    "summary": "Agentic AI and Large Language Models (LLMs) are transforming how language is understood and generated while reshaping decision-making, automation, and research practices. LLMs provide underlying reasoning capabilities, and Agentic AI systems use them to perform tasks through interactions with external tools, services, and Application Programming Interfaces (APIs). Based on a structured scoping review and thematic analysis, this study identifies that core challenges of LLMs, relating to security, privacy and trust, misinformation, misuse and bias, energy consumption, transparency and explainability, and value alignment, can propagate into Agentic AI. Beyond these inherited concerns, Agentic AI introduces new challenges, including context management, security, privacy and trust, goal misalignment, opaque decision-making, limited human oversight, multi-agent coordination, ethical and legal accountability, and long-term safety. We analyse the applications of Agentic AI powered by LLMs across six domains: education, healthcare, cybersecurity, autonomous vehicles, e-commerce, and customer service, to reveal their real-world impact. Furthermore, we demonstrate some LLM limitations using DeepSeek-R1 and GPT-4o. To the best of our knowledge, this is the first comprehensive study to integrate the challenges and applications of LLMs and Agentic AI within a single forward-looking research landscape that promotes interdisciplinary research and responsible advancement of this emerging field.",
+    "authors": [
+      "Sarfraz Brohi",
+      "Qurat-ul-ain Mastoi",
+      "N. Z. Jhanjhi",
+      "Thulasyammal Ramiah Pillai"
+    ],
+    "categories": [],
+    "primary_category": "Crossref",
+    "published": "2025-08-11",
+    "updated": "2025-10-09",
+    "abs_url": "https://doi.org/10.3390/a18080499",
+    "pdf_url": "",
+    "comment": "MDPI AG"
+  },
+  {
+    "paper_id": "doi:10.2139/ssrn.7203094",
+    "title": "RAG-TESTER: Automated End-to-End Testing of Retrieval-Augmented Large Language Models",
+    "summary": "Context: Retrieval-Augmented Generation (RAG) enables Large Language Models (LLMs) to incorporate external, up-to-date, domain-specific, or proprietary information at inference time. However, the reliability of a RAG system depends on the interaction between multiple components, including the generative model, embedding model, retrieval mechanism, and prompt construction strategy. Different combinations of these components may therefore exhibit substantially different failure behavior, motivating systematic and automated testing.Objectives: This work aims to automate the end-to-end testing of RAG-enabled LLMs and to generate test cases capable of exposing failures across different combinations of LLMs and embedding models.Methods: We propose RAG-Tester, an automated testing approach comprising four stages: generation of retrieval documents, generation of test inputs and expected outputs, execution of the generated tests, and automated evaluation using an LLM as a judge. The test-generation strategy incorporates complex document passages, unsupported queries, and document-coverage criteria. We evaluate RAG-Tester using eight LLMs and six embedding models, resulting in 24 compatible LLM-embedding configurations, and compare it with a baseline test-input generator.Results: Across 72,000 test executions, RAG-Tester detected 21,633 failures, compared with 20,293 detected by the baseline, representing a 6.6% increase. RAG-Tester outperformed the baseline in 20 of the 24 evaluated configurations and exposed failures including retrieval inaccuracies, unsupported answers, incomplete use of retrieved context, and difficulties interpreting complex passages.Conclusion: The results show that automated, coverage-oriented test generation can effectively expose failures arising from the interaction between retrieval and generation components in RAG systems. RAG-Tester provides an end-to-end mechanism for comparing LLM--embedding configurations and assessing their reliability before deployment.",
+    "authors": [
+      "Ange Maiztegi",
+      "Jon Ayerdi",
+      "Miren Illarramendi",
+      "Aitor Arrieta"
+    ],
+    "categories": [],
+    "primary_category": "Crossref",
+    "published": "2026-01-01",
+    "updated": "2026-07-29",
+    "abs_url": "https://doi.org/10.2139/ssrn.7203094",
+    "pdf_url": "",
+    "comment": "Elsevier BV"
+  },
+  {
+    "paper_id": "doi:10.36227/techrxiv.176784429.92121712/v1",
+    "title": "A Survey of RAG and Reasoning in Large Language Models",
+    "summary": "Retrieval-Augmented Generation (RAG) is an important development in the world of large language models (LLMs). By combining the ability of LLMs to generate text with access to external knowledge sources, RAG systems can answer questions and solve problems that require more than just what the model \"remembers.\" As LLMs get better at reasoning, they allow RAG systems to handle more complicated tasks with higher accuracy and flexibility. In this survey, we carefully explain what we mean by \"reasoning\" in the context of RAG, and we provide a clear taxonomy that organizes different types of reasoning and retrieval strategies. We also show how reasoning and retrieval can work together to improve each other: better reasoning can guide more effective retrieval, and better retrieval can provide more relevant information for reasoning. Finally, we discuss new trends and promising directions for future research in this area. Overall, this work aims to give readers both a conceptual understanding and practical guidance for building more capable and intelligent retrieval-augmented systems.",
+    "authors": [
+      "Lihui Liu"
+    ],
+    "categories": [],
+    "primary_category": "Crossref",
+    "published": "2026-01-08",
+    "updated": "2026-06-12",
+    "abs_url": "https://doi.org/10.36227/techrxiv.176784429.92121712/v1",
+    "pdf_url": "",
+    "comment": "Institute of Electrical and Electronics Engineers (IEEE)"
+  },
+  {
+    "paper_id": "doi:10.36227/techrxiv.176344216.60619335/v1",
+    "title": "Exploring Agentic Multimodal Large Language Models: A Survey for AIScientists",
+    "summary": "The emergence of agentic Multimodal Large Language Models (MLLMs) has catalyzed a new paradigm in scientific discovery, enabling systems to autonomously understand, reason, and act across diverse modalities. Agentic MLLMs are emerging as the next frontier for AIScientists, systems capable of assisting or even independently conducting every stage in the scientific research cycle. This paper presents a systematic taxonomy and framework for scientific MLLM agents development, covering multimodal perception, training and inference methodologies, evaluation benchmarks, and human–AIScientist collaboration. We further outline persistent challenges such as data scarcity, reliability, and interpretability, emphasizing the importance of transparent and controllable interaction frameworks. By framing agentic MLLMs as collaborative partners that augment rather than replace human scientists, we advocate for a balanced vision of AIScientists, one that advances discovery while promoting democracy and inclusivity in scientific progress.",
+    "authors": [
+      "Jinglin Jian",
+      "Yi R. Fung",
+      "Denghui Zhang",
+      "Yiqian Liang",
+      "Qingyu Chen",
+      "Zhiyong Lu",
+      "Qingyun Wang"
+    ],
+    "categories": [],
+    "primary_category": "Crossref",
+    "published": "2025-11-18",
+    "updated": "2026-06-12",
+    "abs_url": "https://doi.org/10.36227/techrxiv.176344216.60619335/v1",
+    "pdf_url": "",
+    "comment": "Institute of Electrical and Electronics Engineers (IEEE)"
+  },
+  {
+    "paper_id": "doi:10.36227/techrxiv.176344216.60619335/v2",
+    "title": "Exploring Agentic Multimodal Large Language Models: A Survey for AIScientists",
+    "summary": "The emergence of agentic Multimodal Large Language Models (MLLMs) has catalyzed a new paradigm in scientific discovery, enabling systems to autonomously understand, reason, and act across diverse modalities. Agentic MLLMs are emerging as the next frontier for AIScientists, systems capable of assisting or even independently conducting every stage in the scientific research cycle. This paper presents a systematic taxonomy and framework for scientific MLLM agents development, covering multimodal perception, training and inference methodologies, evaluation benchmarks, and human–AIScientist collaboration. We further outline persistent challenges such as data scarcity, reliability, and interpretability, emphasizing the importance of transparent and controllable interaction frameworks. By framing agentic MLLMs as collaborative partners that augment rather than replace human scientists, we advocate for a balanced vision of AIScientists, one that advances discovery while promoting democracy and inclusivity in scientific progress.",
+    "authors": [
+      "Jinglin Jian",
+      "Yi R. Fung",
+      "Denghui Zhang",
+      "Yiqian Liang",
+      "Qingyu Chen",
+      "Zhiyong Lu",
+      "Qingyun Wang"
+    ],
+    "categories": [],
+    "primary_category": "Crossref",
+    "published": "2025-12-01",
+    "updated": "2026-06-03",
+    "abs_url": "https://doi.org/10.36227/techrxiv.176344216.60619335/v2",
+    "pdf_url": "",
+    "comment": "Institute of Electrical and Electronics Engineers (IEEE)"
+  },
+  {
+    "paper_id": "doi:10.58532/nbennuraitc5",
+    "title": "RAG SYSTEM WITH LARGE LANGUAGE MODELS FOR EARLY CANCER DETECTION",
+    "summary": "Retrieval-Augmented Generation (RAG) integrated with Large Language Models (LLMs) has emerged as a promising approach for improving healthcare analytics and disease diagnosis. This chapter presents an enhanced RAG-based framework for early cancer detection using biomedical data, pathology reports, clinical records, and healthcare literature. The system retrieves relevant medical evidence before generating predictions, thereby improving explainability and reducing hallucination issues. The chapter discusses architecture design, vector mechanisms, performance embeddings, workflow evaluation, considerations. and Experimental retrieval analysis, ethical analysis demonstrates that the proposed framework improves prediction accuracy, reduces false positives, and supports healthcare professionals in clinical decision-making.",
+    "authors": [
+      "Naresh Kumar A"
+    ],
+    "categories": [],
+    "primary_category": "Crossref",
+    "published": "2026-06-01",
+    "updated": "2026-07-06",
+    "abs_url": "https://doi.org/10.58532/nbennuraitc5",
+    "pdf_url": "",
+    "comment": "Iterative International Publishers (IIP)"
+  },
+  {
+    "paper_id": "doi:10.20944/preprints202512.0359.v1",
+    "title": "Retrieval Augmented Generation (RAG) and Large Language Models (LLMs) for Enterprise Knowledge Management and Document Automation: A Systematic Literature Review",
+    "summary": "The integration of Retrieval Augmented Generation (RAG) with Large Language Models (LLMs) is rapidly transforming enterprise knowledge management, yet a comprehensive understanding of their deployment in real world workflows remains limited. This study presents a Systematic Literature Review (SLR) analyzing 77 high-quality primary studies selected after rigorous screening to evaluate how these technologies address practical enterprise challenges. We formulated nine research questions targeting platforms, datasets, algorithms, and validation metrics to map the current landscape. Our findings reveal that enterprise adoption is largely in the experimental phase: 63.6% of implementations utilize GPT based models, and 80.5% rely on standard retrieval frameworks such as FAISS or Elasticsearch. Critically, this review identifies a significant ’lab to market’ gap; while retrieval and classification sub-tasks frequently employ academic validation methods like k-fold cross-validation (93.5%), generative evaluation predominantly relies on static hold-out sets due to computational constraints. Furthermore, fewer than 15% of studies address real time integration challenges required for production scale deployment. By systematically mapping these disparities, this study offers a data driven perspective and a strategic roadmap for bridging the gap between academic prototypes and robust enterprise applications.",
+    "authors": [
+      "Ehlullah Karakurt",
+      "Akhan Akbulut"
+    ],
+    "categories": [],
+    "primary_category": "Crossref",
+    "published": "2025-12-04",
+    "updated": "2026-01-05",
+    "abs_url": "https://doi.org/10.20944/preprints202512.0359.v1",
+    "pdf_url": "",
+    "comment": "MDPI AG"
+  },
+  {
+    "paper_id": "doi:10.3390/app16010368",
+    "title": "Retrieval-Augmented Generation (RAG) and Large Language Models (LLMs) for Enterprise Knowledge Management and Document Automation: A Systematic Literature Review",
+    "summary": "The integration of Retrieval-Augmented Generation (RAG) with Large Language Models (LLMs) is rapidly transforming enterprise knowledge management, yet a comprehensive understanding of their deployment in real-world workflows remains limited. This study presents a systematic literature review (SLR) analyzing 63 high-quality primary studies selected after rigorous screening to evaluate how these technologies address practical enterprise challenges. We formulated nine research questions targeting platforms, datasets, algorithms, and validation metrics to map the current landscape. Our findings reveal that enterprise adoption is largely in the experimental phase: 63.6% of implementations utilize GPT based models, and 80.5% rely on standard retrieval frameworks such as FAISS or Elasticsearch. Critically, this review identifies a significant ‘lab-to-market’ gap; while retrieval and classification sub-tasks frequently employ academic validation methods like k-fold cross-validation (93.6%), generative evaluation predominantly relies on static hold-out sets due to computational constraints. Furthermore, fewer than 15% of studies address real-time integration challenges required for production scale deployment. By systematically mapping these disparities, this study offers a data-driven perspective and a strategic roadmap for bridging the gap between academic prototypes and robust enterprise applications.",
+    "authors": [
+      "Ehlullah Karakurt",
+      "Akhan Akbulut"
+    ],
+    "categories": [],
+    "primary_category": "Crossref",
+    "published": "2025-12-29",
+    "updated": "2025-12-31",
+    "abs_url": "https://doi.org/10.3390/app16010368",
+    "pdf_url": "",
+    "comment": "MDPI AG"
+  },
+  {
+    "paper_id": "doi:10.21203/rs.3.rs-6551928/v1",
+    "title": "Can Large Language Models (LLMs) and Retrieval-Augmented Generation (RAG) Generate New Knowledge for Urban Studies?",
+    "summary": "Abstract Retrieval-Augmented Generation (RAG) has demonstrated promising potential in addressing domain-specific challenges by integrating up-to-date, expert-level knowledge into the outputs of Large Language Models (LLM). However, optimizing these models for urban studies and other specialized domains remains a key challenge. This paper investigates the application of RAG-enhanced LLMs in the context of Urban Vacant Land (UVL), a pressing global issue for sustainable urban development. Drawing on a Systematic Literature Review (SLR) of UVL-related research retrieved from the Web of Science (WOS) database, we constructed a research knowledge base to support RAG-based enhancements. We then designed five challenging prompts focused on UVL, each targeting areas where current academic literature remains limited, aiming to assess the models' ability to generate new knowledge beyond existing findings. Through a combination of automated and human evaluations, we found that RAG significantly improved LLM performance in addressing specialized topics. However, limitations persist in the models’ capacity for knowledge generation. Most outputs were limited to proposing related research questions and preliminary experimental designs. These findings underscore both the potential and the current boundaries of RAG-enhanced LLMs in supporting theoretical innovation and policy-oriented research within complex urban domains.",
+    "authors": [
+      "Xinyu Wang"
+    ],
+    "categories": [],
+    "primary_category": "Crossref",
+    "published": "2025-04-30",
+    "updated": "2025-05-17",
+    "abs_url": "https://doi.org/10.21203/rs.3.rs-6551928/v1",
+    "pdf_url": "",
+    "comment": "Springer Science and Business Media LLC"
+  },
+  {
+    "paper_id": "doi:10.5121/csit.2026.160508",
+    "title": "SPLIT-BRAIN RAG: WHY LARGE LANGUAGE MODELS ARE NOT ENOUGH FOR SCIENTIFIC QUESTION ANSWERING",
+    "summary": "This work evaluates monolithic LLM deployments in Ricerca Paper chat, a RetrievalAugmented Generation (RAG) system for academic inquiry. Current approaches typically rely on a “monolithic” architecture in which a single LLM handles all tasks. This study posits that monolithic architectures are inherently inefficient for scientific QA because tasksimpose divergent computational requirements. Simple retrieval prioritizes speed, whereas complex synthesis demands reasoning. Furthermore, relying on a single generative model introduces risks of “hallucination inheritance,” where models trained on synthetic data replicate the errors of their generators, leading to a degradation of knowledge integrity over time. Authors tested model compliance against five rigid output constraints: formatting citations, generating Markdown tables, outputting raw JSON, adhering to bullet point styles, and correctly formatting code headers.",
+    "authors": [
+      "Jodi Moselle Alcantara",
+      "Armielyn Obinguar"
+    ],
+    "categories": [],
+    "primary_category": "Crossref",
+    "published": "2026-03-14",
+    "updated": "2026-03-21",
+    "abs_url": "https://doi.org/10.5121/csit.2026.160508",
+    "pdf_url": "",
+    "comment": "Academy and Industry Research Collaboration Center (AIRCC)"
+  },
+  {
+    "paper_id": "doi:10.54254/2977-3903/2026.31567",
+    "title": "A comprehensive survey of knowledge Graph-Augmented Generation (Graph-RAG) for trustworthy large language models",
+    "summary": "Large Language Models (LLMs), which are capable of generating diverse expressions or reasoning paths, are fundamentally limited by their reliance on Parametric Memory and hence suffer from the 'hallucination' problem. That is, LLMs are capable of generating false yet plausible statements that are not grounded in reality, which is problematic for scientific and clinical use. A popular solution for alleviating this problem is the retrieval-augmented generation (RAG) technique. However, the retrieved sources are still large passages of semi-unstructured documents, and rigorous, verifiable, and logically coherent reasoning processes are still lacking. In this review, we summarise the latest progress in the direction of Knowledge Graph Enhanced Generation (Graph-RAG) as an attempt to achieve rigorous, verifiable, and logical reasoning processes using structured retrieval sources. We design a computation framework to provide a comprehensive taxonomy, classifying Graph-RAG methods into three areas: Graph Indexing, Graph Guided Retrieval, and Graph Enhanced Generation. We also discuss in depth the potential future directions for Graph-RAG, with an emphasis on moving beyond simple retrieval towards causal graph reasoning and actionable graphs. Finally, we present the main challenges in scaling Graph-RAG and its evaluation protocols, and conclude that Graph-RAG is a critical step toward trustworthy AI.",
+    "authors": [
+      "Jianwei Ren"
+    ],
+    "categories": [],
+    "primary_category": "Crossref",
+    "published": "2026-01-29",
+    "updated": "2026-04-10",
+    "abs_url": "https://doi.org/10.54254/2977-3903/2026.31567",
+    "pdf_url": "",
+    "comment": "EWA Publishing"
+  },
+  {
+    "paper_id": "doi:10.1177/0739456x251372082",
+    "title": "Automating Plan Evaluation Using Agentic Large Language Models",
+    "summary": "Manual plan evaluation faces reliability and scalability challenges. This research benchmarks human evaluations against a large language model (LLM) using a multi-agent approach and/or retrieval-augmented generation (RAG) to automate complex content analysis tasks. We find that LLMs generally perform comparably with humans, with most errors arising from overimplication and limited domain knowledge. The multi-agent approach substantially enhances LLM’s performance, reducing common machine errors by over 50 percent. Integrating such LLM tools with human oversight will likely become the new norm for content analysis, and this study demonstrates how to leverage artificial intelligence’s (AI) efficiency and precision alongside humans’ contextual understanding and domain expertise.",
+    "authors": [
+      "Xinyu Fu",
+      "Chaosu Li"
+    ],
+    "categories": [],
+    "primary_category": "Crossref",
+    "published": "2025-09-09",
+    "updated": "2026-04-30",
+    "abs_url": "https://doi.org/10.1177/0739456x251372082",
+    "pdf_url": "https://journals.sagepub.com/doi/pdf/10.1177/0739456X251372082",
+    "comment": "SAGE Publications"
+  },
+  {
+    "paper_id": "doi:10.22541/au.176478094.40436687/v1",
+    "title": "Agentic RAG Optimization via MDP Modeling and Pruning: The DecEx-RAG Framework",
+    "summary": "Large Language Models (LLMs) struggle with dynamic, real-time tasks due to static training data limitations, and Retrieval-Augmented Generation (RAG) has become a key solution by integrating external knowledge. Agentic RAG-with dynamic retrieval and adaptive workflows-further boosts complex task processing, but existing methods (e.g., Search-R1) using outcome-supervised reinforcement learning face issues: inefficient exploration (needing full reasoning chains for rewards), sparse reward signals (requiring more data to converge), and ambiguous global rewards (failing to capture step-level performance). To address these, we propose DecEx-RAG, a framework that models RAG as a Markov Decision Process (MDP) with two separated stages: Decision-Making and Execution. The Decision-Making stage manages termination (avoiding redundant iterations/premature stopping) and retrieval (choosing internal LLM knowledge or external tools for sub-questions). The Execution stage optimizes execution quality (e.g., highquality sub-questions for subsequent reasoning). We also add an efficient pruning strategy: multiple rollout simulations per decision layer, with aggregated rewards pruning redundant branches to cut time complexity. Experiments on six open-domain QA datasets show DecEx-RAG achieves an average 6.2% absolute performance improvement over baselines. The pruning strategy boosts data construction efficiency by nearly 6× while preserving quality, offering a practical process-supervised RAG training solution.",
+    "authors": [
+      "Praveenakumar Shivappa Salamani",
+      "Takeo Yaku"
+    ],
+    "categories": [],
+    "primary_category": "Crossref",
+    "published": "2025-12-03",
+    "updated": "2026-06-30",
+    "abs_url": "https://doi.org/10.22541/au.176478094.40436687/v1",
+    "pdf_url": "",
+    "comment": "Wiley"
+  },
+  {
+    "paper_id": "doi:10.22541/authorea.15006474/v1",
+    "title": "Agentic Knowledge Fusion for Power System Reasoning with Large Language Models",
+    "summary": "With the rapid advancement of large language models (LLMs), their application in specialized domains has attracted growing attention. However, power-system knowledge is highly specialized, structurally complex, rapidly evolving, and safety-critical, making it difficult for existing LLMs to integrate such knowledge accurately and reliably. To address this issue, this paper proposes an agentic knowledge fusion method for power-system LLMs. Through multi-agent collaboration, the method incorporates planning, task decomposition, reflection, and dynamic routing to retrieve and consistently integrate multi-source domain knowledge. Prompt learning further guides reasoning under explicit knowledge constraints, while local knowledge caching and knowledge-constrained continual pre-training support dynamic knowledge updates and stable capability retention. Experiments on a power-domain benchmark demonstrate significant improvements over existing methods in power question answering and knowledge reasoning.",
+    "authors": [
+      "Honglei Yao",
+      "Ziyuan Liu",
+      "Xin Liu",
+      "Yourong Li",
+      "Yuhui Jin",
+      "Guidong Zhang"
+    ],
+    "categories": [],
+    "primary_category": "Crossref",
+    "published": "2026-07-23",
+    "updated": "2026-07-23",
+    "abs_url": "https://doi.org/10.22541/authorea.15006474/v1",
+    "pdf_url": "",
     "comment": "Wiley"
   }
 ]

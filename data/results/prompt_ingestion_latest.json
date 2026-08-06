@@ -1,0 +1,220 @@
+{
+  "prompt": "Agentic RAG and Large Language Models",
+  "question": "Using the indexed scholarly papers, respond to this request: Agentic RAG and Large Language Models",
+  "candidates_found": 72,
+  "selected_count": 24,
+  "new_source_records": 24,
+  "total_source_records": 52,
+  "total_clean_records": 50,
+  "embedding_model": "text-embedding-3-small",
+  "raw_response_path": "/Users/sethehung/Documents/aithucchien_vinuni/Lab/Lab_10/K4_Day10_Minions/data/raw/prompt_searches/20260806T095821867525Z-agentic-rag-and-large-language-models.json",
+  "raw_records_path": "/Users/sethehung/Documents/aithucchien_vinuni/Lab/Lab_10/K4_Day10_Minions/data/raw/crossref_records.json",
+  "clean_csv_path": "/Users/sethehung/Documents/aithucchien_vinuni/Lab/Lab_10/K4_Day10_Minions/data/clean/papers_clean.csv",
+  "clean_json_path": "/Users/sethehung/Documents/aithucchien_vinuni/Lab/Lab_10/K4_Day10_Minions/data/clean/papers_clean.json",
+  "index_manifest_path": "/Users/sethehung/Documents/aithucchien_vinuni/Lab/Lab_10/K4_Day10_Minions/data/embeddings/papers_embeddings.json",
+  "run_result_path": "/Users/sethehung/Documents/aithucchien_vinuni/Lab/Lab_10/K4_Day10_Minions/data/results/prompt_ingestion_latest.json",
+  "selected_papers": [
+    {
+      "rank": 1,
+      "semantic_score": 0.709573,
+      "paper_id": "doi:10.1613/jair.1.18675",
+      "title": "Agentic Large Language Models, a Survey",
+      "published": "2025-12-30",
+      "source_url": "https://doi.org/10.1613/jair.1.18675"
+    },
+    {
+      "rank": 2,
+      "semantic_score": 0.668664,
+      "paper_id": "doi:10.52783/anvi.v28.2504",
+      "title": "Long Context RAG: Unlocking the Potential of Large Language Models for Complex Queries",
+      "published": "2024-11-28",
+      "source_url": "https://doi.org/10.52783/anvi.v28.2504"
+    },
+    {
+      "rank": 3,
+      "semantic_score": 0.665979,
+      "paper_id": "doi:10.31219/osf.io/b94ng_v1",
+      "title": "Long Text Language Ensemble Models: Extension of Retrieval-Augmented Generation (RAG)",
+      "published": "2025-03-18",
+      "source_url": "https://doi.org/10.31219/osf.io/b94ng_v1"
+    },
+    {
+      "rank": 4,
+      "semantic_score": 0.658523,
+      "paper_id": "doi:10.48165/iitmjit.2026.12.1.14",
+      "title": "Large Language Models and Agentic AI: How Modern AI Systems Are Evolving Into Autonomous Agents",
+      "published": "2026-01-01",
+      "source_url": "https://doi.org/10.48165/iitmjit.2026.12.1.14"
+    },
+    {
+      "rank": 5,
+      "semantic_score": 0.647527,
+      "paper_id": "doi:10.63503/j.ijaimd.2026.233",
+      "title": "Retrieval-Augmented Generation (RAG) for Large Language Models: A Comprehensive Survey",
+      "published": "2026-04-08",
+      "source_url": "https://doi.org/10.63503/j.ijaimd.2026.233"
+    },
+    {
+      "rank": 6,
+      "semantic_score": 0.642826,
+      "paper_id": "doi:10.1609/aaaiss.v3i1.31254",
+      "title": "Evaluating Large Language Models with RAG Capability: A Perspective from Robot Behavior Planning and Execution",
+      "published": "2024-05-20",
+      "source_url": "https://doi.org/10.1609/aaaiss.v3i1.31254"
+    },
+    {
+      "rank": 7,
+      "semantic_score": 0.642101,
+      "paper_id": "doi:10.34190/ejel.23.4.4044",
+      "title": "Agentic RAG for Personalized Learning: Design of an AI-Powered Learning Agent Using Open-Source Small Language Models",
+      "published": "2025-11-05",
+      "source_url": "https://doi.org/10.34190/ejel.23.4.4044"
+    },
+    {
+      "rank": 8,
+      "semantic_score": 0.63814,
+      "paper_id": "doi:10.36227/techrxiv.175624551.12254549/v1",
+      "title": "Traditional RAG vs. Agentic RAG: A Comparative Study of Retrieval-Augmented Systems",
+      "published": "2025-08-26",
+      "source_url": "https://doi.org/10.36227/techrxiv.175624551.12254549/v1"
+    },
+    {
+      "rank": 9,
+      "semantic_score": 0.635463,
+      "paper_id": "doi:10.31219/osf.io/ns2v3",
+      "title": "Implementing Retrieval-Augmented Generation (RAG) for Large Language Models to Build Confidence in Traditional Chinese Medicine",
+      "published": "2024-06-11",
+      "source_url": "https://doi.org/10.31219/osf.io/ns2v3"
+    },
+    {
+      "rank": 10,
+      "semantic_score": 0.627985,
+      "paper_id": "doi:10.33166/aetic.2025.05.005",
+      "title": "Clinical Text Augmentation and Generation Using RAG for Large Language Models",
+      "published": "2025-10-25",
+      "source_url": "https://doi.org/10.33166/aetic.2025.05.005"
+    },
+    {
+      "rank": 11,
+      "semantic_score": 0.624,
+      "paper_id": "doi:10.3390/a18080499",
+      "title": "A Research Landscape of Agentic AI and Large Language Models: Applications, Challenges and Future Directions",
+      "published": "2025-08-11",
+      "source_url": "https://doi.org/10.3390/a18080499"
+    },
+    {
+      "rank": 12,
+      "semantic_score": 0.622042,
+      "paper_id": "doi:10.2139/ssrn.7203094",
+      "title": "RAG-TESTER: Automated End-to-End Testing of Retrieval-Augmented Large Language Models",
+      "published": "2026-01-01",
+      "source_url": "https://doi.org/10.2139/ssrn.7203094"
+    },
+    {
+      "rank": 13,
+      "semantic_score": 0.620365,
+      "paper_id": "doi:10.36227/techrxiv.176784429.92121712/v1",
+      "title": "A Survey of RAG and Reasoning in Large Language Models",
+      "published": "2026-01-08",
+      "source_url": "https://doi.org/10.36227/techrxiv.176784429.92121712/v1"
+    },
+    {
+      "rank": 14,
+      "semantic_score": 0.617661,
+      "paper_id": "doi:10.36227/techrxiv.176344216.60619335/v1",
+      "title": "Exploring Agentic Multimodal Large Language Models: A Survey for AIScientists",
+      "published": "2025-11-18",
+      "source_url": "https://doi.org/10.36227/techrxiv.176344216.60619335/v1"
+    },
+    {
+      "rank": 15,
+      "semantic_score": 0.617661,
+      "paper_id": "doi:10.36227/techrxiv.176344216.60619335/v2",
+      "title": "Exploring Agentic Multimodal Large Language Models: A Survey for AIScientists",
+      "published": "2025-12-01",
+      "source_url": "https://doi.org/10.36227/techrxiv.176344216.60619335/v2"
+    },
+    {
+      "rank": 16,
+      "semantic_score": 0.613266,
+      "paper_id": "doi:10.58532/nbennuraitc5",
+      "title": "RAG SYSTEM WITH LARGE LANGUAGE MODELS FOR EARLY CANCER DETECTION",
+      "published": "2026-06-01",
+      "source_url": "https://doi.org/10.58532/nbennuraitc5"
+    },
+    {
+      "rank": 17,
+      "semantic_score": 0.612532,
+      "paper_id": "doi:10.20944/preprints202512.0359.v1",
+      "title": "Retrieval Augmented Generation (RAG) and Large Language Models (LLMs) for Enterprise Knowledge Management and Document Automation: A Systematic Literature Review",
+      "published": "2025-12-04",
+      "source_url": "https://doi.org/10.20944/preprints202512.0359.v1"
+    },
+    {
+      "rank": 18,
+      "semantic_score": 0.612335,
+      "paper_id": "doi:10.3390/app16010368",
+      "title": "Retrieval-Augmented Generation (RAG) and Large Language Models (LLMs) for Enterprise Knowledge Management and Document Automation: A Systematic Literature Review",
+      "published": "2025-12-29",
+      "source_url": "https://doi.org/10.3390/app16010368"
+    },
+    {
+      "rank": 19,
+      "semantic_score": 0.61134,
+      "paper_id": "doi:10.21203/rs.3.rs-6551928/v1",
+      "title": "Can Large Language Models (LLMs) and Retrieval-Augmented Generation (RAG) Generate New Knowledge for Urban Studies?",
+      "published": "2025-04-30",
+      "source_url": "https://doi.org/10.21203/rs.3.rs-6551928/v1"
+    },
+    {
+      "rank": 20,
+      "semantic_score": 0.608523,
+      "paper_id": "doi:10.5121/csit.2026.160508",
+      "title": "SPLIT-BRAIN RAG: WHY LARGE LANGUAGE MODELS ARE NOT ENOUGH FOR SCIENTIFIC QUESTION ANSWERING",
+      "published": "2026-03-14",
+      "source_url": "https://doi.org/10.5121/csit.2026.160508"
+    },
+    {
+      "rank": 21,
+      "semantic_score": 0.605035,
+      "paper_id": "doi:10.54254/2977-3903/2026.31567",
+      "title": "A comprehensive survey of knowledge Graph-Augmented Generation (Graph-RAG) for trustworthy large language models",
+      "published": "2026-01-29",
+      "source_url": "https://doi.org/10.54254/2977-3903/2026.31567"
+    },
+    {
+      "rank": 22,
+      "semantic_score": 0.598014,
+      "paper_id": "doi:10.1177/0739456x251372082",
+      "title": "Automating Plan Evaluation Using Agentic Large Language Models",
+      "published": "2025-09-09",
+      "source_url": "https://doi.org/10.1177/0739456x251372082"
+    },
+    {
+      "rank": 23,
+      "semantic_score": 0.594168,
+      "paper_id": "doi:10.22541/au.176478094.40436687/v1",
+      "title": "Agentic RAG Optimization via MDP Modeling and Pruning: The DecEx-RAG Framework",
+      "published": "2025-12-03",
+      "source_url": "https://doi.org/10.22541/au.176478094.40436687/v1"
+    },
+    {
+      "rank": 24,
+      "semantic_score": 0.586757,
+      "paper_id": "doi:10.22541/authorea.15006474/v1",
+      "title": "Agentic Knowledge Fusion for Power System Reasoning with Large Language Models",
+      "published": "2026-07-23",
+      "source_url": "https://doi.org/10.22541/authorea.15006474/v1"
+    }
+  ],
+  "answer": "Background: There is great interest in agentic LLMs, large language models that act as agents.",
+  "retrieved_doc_ids": [
+    "doi:10.1613/jair.1.18675",
+    "doi:10.63503/j.ijaimd.2026.233",
+    "doi:10.31219/osf.io/b94ng_v1",
+    "doi:10.52783/anvi.v28.2504"
+  ],
+  "used_llm_agent": false,
+  "tool_calls": [],
+  "tool_outputs": []
+}
