@@ -11,7 +11,7 @@
 
 | State | retrieval_hit_rate | mean_token_f1 | judge_accuracy | mean_judge_score |
 |---|---:|---:|---:|---:|
-| Baseline | 1.0000 | 1.0000 | 0.9583 | 4.8333 |
+| Baseline | 1.0000 | 1.0000 | 1.0000 | 5 |
 
 - Samples: 24
 - Ragas: {'skipped': 'Set RUN_RAGAS=1 to enable the slower Ragas pass.'}

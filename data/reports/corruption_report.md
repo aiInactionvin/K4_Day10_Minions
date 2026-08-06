@@ -4,9 +4,9 @@
 
 | State | retrieval_hit_rate | mean_token_f1 | judge_accuracy | mean_judge_score |
 |---|---:|---:|---:|---:|
-| Baseline | 1.0000 | 1.0000 | 0.9583 | 4.8333 |
-| Corrupted | 0.5000 | 0.5195 | 0.5000 | 3.1667 |
-| Repaired | 1.0000 | 1.0000 | 0.9583 | 4.8333 |
+| Baseline | 1.0000 | 1.0000 | 1.0000 | 5 |
+| Corrupted | 0.5000 | 0.5168 | 0.5000 | 3 |
+| Repaired | 1.0000 | 1.0000 | 1.0000 | 5 |
 
 ## Quality Signals
 
@@ -18,8 +18,8 @@
 ## Impact
 
 - Retrieval hit rate changed from 1.0000 to 0.5000 after corruption, then to 1.0000 after repair.
-- Mean token F1 changed from 1.0000 to 0.5195 after corruption, then to 1.0000 after repair.
-- Judge accuracy changed from 0.9583 to 0.5000 after corruption, then to 0.9583 after repair.
+- Mean token F1 changed from 1.0000 to 0.5168 after corruption, then to 1.0000 after repair.
+- Judge accuracy changed from 1.0000 to 0.5000 after corruption, then to 1.0000 after repair.
 
 ## Conclusion
 
