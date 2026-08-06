@@ -1,0 +1,29 @@
+{
+  "purpose": "Deliberately corrupted paper corpus for evaluation.",
+  "clean_reference": "../clean/papers_clean.json",
+  "corrupted_dataset": "papers_eval_corrupted.json",
+  "corruption_log": "corruption_log.json",
+  "input_row_count": 24,
+  "output_row_count": 24,
+  "missing_paper_ids": [
+    "doi:10.2118/234689-pa",
+    "doi:10.1007/s10278-026-02086-9",
+    "doi:10.21203/rs.3.rs-10178277/v1"
+  ],
+  "duplicate_paper_ids": [
+    "doi:10.1093/sleep/zsag091.0346",
+    "doi:10.32473/flairs.39.1.141782",
+    "doi:10.55041/isjem07213"
+  ],
+  "blank_summary_rows": 3,
+  "noisy_summary_rows": 3,
+  "stale_date_rows": 3,
+  "operation_counts": {
+    "drop_latest_record": 3,
+    "blank_summary": 3,
+    "inject_summary_noise": 3,
+    "truncate_title": 3,
+    "make_publication_stale": 3,
+    "duplicate_row": 3
+  }
+}
