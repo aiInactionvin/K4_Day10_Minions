@@ -16,6 +16,8 @@ from urllib3.util import Retry
 from core.config import Settings
 
 logger = logging.getLogger(__name__)
+CROSSREF_WORKS_URL = "https://api.crossref.org/works"
+USER_AGENT = "MinionsDataObservabilityLab/1.0 (mailto:student@lab.local)"
 
 
 @dataclass(frozen=True)
@@ -31,6 +33,15 @@ class PaperRecord:
     abs_url: str
     pdf_url: str
     comment: str
+
+
+@dataclass(frozen=True)
+class CrossrefSearchBatch:
+    """Raw and parsed results returned by one prompt-driven Crossref search."""
+
+    prompt: str
+    payload: dict[str, Any]
+    records: list[PaperRecord]
 
 
 def _clean_text(text: str | None) -> str:
@@ -178,25 +189,7 @@ def parse_crossref_payload(payload: dict[str, Any]) -> list[PaperRecord]:
     return records
 
 
-def fetch_source_records(settings: Settings) -> list[PaperRecord]:
-    """Fetch records from Crossref works API with retry/backoff, save raw response and records.
-
-    1. Builds query params from settings.
-    2. Executes HTTP GET request with exponential retry backoff for 429, 503, etc.
-    3. Saves raw API response JSON to `settings.paths.raw_api_response`.
-    4. Parses payload into `PaperRecord` objects.
-    5. Saves parsed raw records JSON to `settings.paths.raw_records_json`.
-    """
-    url = "https://api.crossref.org/works"
-    params = {
-        "query": settings.source_query,
-        "filter": settings.source_filter,
-        "rows": settings.max_results,
-    }
-    headers = {
-        "User-Agent": "MinionsDataObservabilityLab/1.0 (mailto:student@lab.local)",
-    }
-
+def _build_crossref_session() -> requests.Session:
     session = requests.Session()
     retries = Retry(
         total=5,
@@ -207,12 +200,104 @@ def fetch_source_records(settings: Settings) -> list[PaperRecord]:
     adapter = HTTPAdapter(max_retries=retries)
     session.mount("http://", adapter)
     session.mount("https://", adapter)
+    return session
 
-    logger.info("Fetching Crossref records with query='%s', rows=%d", settings.source_query, settings.max_results)
-    response = session.get(url, params=params, headers=headers, timeout=30)
+
+def _get_crossref_payload(
+    *,
+    query: str,
+    rows: int,
+    filter_query: str | None,
+    session: requests.Session | None = None,
+) -> dict[str, Any]:
+    if not isinstance(query, str) or not query.strip():
+        raise ValueError("Crossref query must be a non-empty string.")
+    if isinstance(rows, bool) or not isinstance(rows, int) or not 1 <= rows <= 1000:
+        raise ValueError("Crossref rows must be an integer between 1 and 1000.")
+
+    params: dict[str, Any] = {
+        "query": query.strip(),
+        "rows": rows,
+    }
+    if filter_query and filter_query.strip():
+        params["filter"] = filter_query.strip()
+
+    client = session or _build_crossref_session()
+    response = client.get(
+        CROSSREF_WORKS_URL,
+        params=params,
+        headers={"User-Agent": USER_AGENT},
+        timeout=30,
+    )
     response.raise_for_status()
-
     payload = response.json()
+    if not isinstance(payload, dict):
+        raise ValueError("Crossref returned a non-object JSON payload.")
+    return payload
+
+
+def search_crossref_by_prompt(
+    settings: Settings,
+    prompt: str,
+    *,
+    rows: int | None = None,
+    filter_query: str = "has-abstract:true",
+    session: requests.Session | None = None,
+) -> CrossrefSearchBatch:
+    """Search Crossref with prompt text without mutating the persisted source.
+
+    Crossref accepts lexical text queries rather than embedding vectors. Semantic
+    embedding reranking is intentionally performed after this candidate-fetch step.
+    """
+    requested_rows = rows if rows is not None else min(1000, max(settings.max_results * 3, 24))
+    payload = _get_crossref_payload(
+        query=prompt,
+        rows=requested_rows,
+        filter_query=filter_query,
+        session=session,
+    )
+    return CrossrefSearchBatch(
+        prompt=prompt.strip(),
+        payload=payload,
+        records=parse_crossref_payload(payload),
+    )
+
+
+def merge_raw_records(
+    existing: list[PaperRecord],
+    incoming: list[PaperRecord],
+) -> list[PaperRecord]:
+    """Merge new source records by stable paper id; newer input wins in place."""
+    merged: dict[str, PaperRecord] = {}
+    for record in [*existing, *incoming]:
+        key = record.paper_id.strip().casefold()
+        if key:
+            merged[key] = record
+    return list(merged.values())
+
+
+def save_raw_records(path: Path, records: list[PaperRecord]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8") as file:
+        json.dump([asdict(record) for record in records], file, indent=2, ensure_ascii=False)
+        file.write("\n")
+
+
+def fetch_source_records(settings: Settings) -> list[PaperRecord]:
+    """Fetch records from Crossref works API with retry/backoff, save raw response and records.
+
+    1. Builds query params from settings.
+    2. Executes HTTP GET request with exponential retry backoff for 429, 503, etc.
+    3. Saves raw API response JSON to `settings.paths.raw_api_response`.
+    4. Parses payload into `PaperRecord` objects.
+    5. Saves parsed raw records JSON to `settings.paths.raw_records_json`.
+    """
+    logger.info("Fetching Crossref records with query='%s', rows=%d", settings.source_query, settings.max_results)
+    payload = _get_crossref_payload(
+        query=settings.source_query,
+        rows=settings.max_results,
+        filter_query=settings.source_filter,
+    )
 
     # Save raw API response JSON
     raw_api_path = settings.paths.raw_api_response
@@ -227,9 +312,7 @@ def fetch_source_records(settings: Settings) -> list[PaperRecord]:
     # Save raw records JSON
     raw_records_path = settings.paths.raw_records_json
     raw_records_path.parent.mkdir(parents=True, exist_ok=True)
-    records_data = [asdict(r) for r in records]
-    with raw_records_path.open("w", encoding="utf-8") as f:
-        json.dump(records_data, f, indent=2, ensure_ascii=False)
+    save_raw_records(raw_records_path, records)
     logger.info("Saved %d parsed records to %s", len(records), raw_records_path)
 
     return records
@@ -247,4 +330,3 @@ def load_raw_records(path: Path) -> list[PaperRecord]:
         raise ValueError(f"Expected JSON list in {path}, got {type(data).__name__}")
 
     return [PaperRecord(**item) for item in data]
-

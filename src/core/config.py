@@ -14,6 +14,7 @@ class Paths:
     workspace_dir: Path
     raw_api_response: Path
     raw_records_json: Path
+    prompt_search_dir: Path
     clean_csv: Path
     clean_json: Path
     chroma_dir: Path
@@ -38,6 +39,7 @@ class Paths:
     repaired_metrics: Path
     repaired_answers: Path
     comparison_report: Path
+    prompt_ingestion_result: Path
 
 
 @dataclass(frozen=True)
@@ -98,6 +100,7 @@ def load_settings(project_dir: Path | None = None) -> Settings:
         workspace_dir=workspace,
         raw_api_response=data_dir / "raw" / "crossref_response.json",
         raw_records_json=data_dir / "raw" / "crossref_records.json",
+        prompt_search_dir=data_dir / "raw" / "prompt_searches",
         clean_csv=data_dir / "clean" / "papers_clean.csv",
         clean_json=data_dir / "clean" / "papers_clean.json",
         chroma_dir=data_dir / "chroma",
@@ -122,6 +125,7 @@ def load_settings(project_dir: Path | None = None) -> Settings:
         repaired_metrics=data_dir / "results" / "repaired_metrics.json",
         repaired_answers=data_dir / "results" / "repaired_answers.json",
         comparison_report=data_dir / "reports" / "corruption_report.md",
+        prompt_ingestion_result=data_dir / "results" / "prompt_ingestion_latest.json",
     )
 
     return Settings(

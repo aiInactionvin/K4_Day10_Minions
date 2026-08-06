@@ -226,6 +226,48 @@ Các chỉ số trọng tâm:
 
 Mục tiêu không chỉ là pipeline chạy xong, mà phải có bằng chứng cho thấy data corruption làm thay đổi chất lượng agent và repair giúp khôi phục chất lượng.
 
+## Tìm và ingest tài liệu mới bằng prompt
+
+Entrypoint `script/run_prompt_ingestion.py` nhận mô tả tự nhiên, lấy candidate từ
+Crossref, chunk và embedding-rerank title/abstract, merge paper được chọn vào raw
+source, chạy lại cleaning, rebuild baseline Chroma index và hỏi RAG agent trên corpus
+mới.
+
+Chạy tương tác:
+
+```bash
+uv run python script/run_prompt_ingestion.py
+```
+
+Hoặc truyền prompt và câu hỏi trực tiếp:
+
+```bash
+uv run python script/run_prompt_ingestion.py \
+  "papers about reliable agentic RAG evaluation" \
+  --question "What methods improve reliability in agentic RAG?" \
+  --limit 8 \
+  --candidates 30
+```
+
+Nếu chỉ muốn kiểm tra ingest/retrieval local mà không gọi LLM provider:
+
+```bash
+uv run python script/run_prompt_ingestion.py \
+  "papers about reliable agentic RAG evaluation" \
+  --limit 8 \
+  --candidates 30 \
+  --no-llm
+```
+
+Artifacts được cập nhật/tạo gồm:
+
+- `data/raw/prompt_searches/`: lịch sử raw response cho từng prompt.
+- `data/raw/crossref_records.json`: source đã merge theo `paper_id`.
+- `data/clean/papers_clean.csv` và `.json`: corpus clean mới.
+- `data/embeddings/papers_embeddings.json` và baseline Chroma collection.
+- `data/results/prompt_ingestion_latest.json`: paper được chọn, semantic score,
+  đường dẫn artifact, tool trace và câu trả lời cuối.
+
 ## 7. Lỗi setup thường gặp
 
 | Triệu chứng                                         | Nguyên nhân thường gặp                          | Cách kiểm tra/xử lý                                                             |
