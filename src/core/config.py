@@ -76,6 +76,13 @@ def load_settings(project_dir: Path | None = None) -> Settings:
     load_dotenv(workspace / ".env")
     load_dotenv(root / ".env", override=False)
 
+    llm_provider = os.getenv("LLM_PROVIDER", "gemini")
+    normalized_llm_provider = llm_provider.strip().lower().replace(" ", "").replace("-", "")
+    configured_model = os.getenv("LLM_MODEL")
+    # The bundled default is valid only for Gemini. Requiring LLM_MODEL for
+    # another provider avoids silently sending a Gemini model name to it.
+    model_name = configured_model or ("gemini-2.5-flash" if normalized_llm_provider == "gemini" else "")
+
     data_dir = root / "data"
     paths = Paths(
         project_dir=root,
@@ -109,8 +116,8 @@ def load_settings(project_dir: Path | None = None) -> Settings:
     )
 
     return Settings(
-        llm_provider=os.getenv("LLM_PROVIDER", "gemini"),
-        model_name=os.getenv("LLM_MODEL", "gemini-2.5-flash"),
+        llm_provider=llm_provider,
+        model_name=model_name,
         google_api_key=os.getenv("GOOGLE_API_KEY"),
         openai_api_key=os.getenv("OPENAI_API_KEY"),
         anthropic_api_key=os.getenv("ANTHROPIC_API_KEY"),
