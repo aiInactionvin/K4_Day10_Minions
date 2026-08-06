@@ -219,8 +219,18 @@ export function getPipelineStatus() {
     active_mode: 'DEMO',
     stages: [
       {
+        id: 'stage_0',
+        name: 'User Query & Crossref Crawl Trigger',
+        module: 'Chatbot Sidebar Agent Tool',
+        status: 'SUCCESS',
+        latency_ms: 80,
+        records_processed: 1,
+        output_files: ['Chatbot Sidebar Input', 'Crossref API Query Request'],
+        details: 'Captured user topic description from Chatbot Sidebar ("Crawl Crossref Papers Tool"), extracted research query parameters (query, filter, mailto headers), and passed parameters to Step 1 Ingestion Owner.'
+      },
+      {
         id: 'stage_1',
-        name: 'Ingestion Owner (Role 2)',
+        name: 'Ingestion Owner',
         module: 'src/ingestion/crossref.py',
         status: 'SUCCESS',
         latency_ms: 1240,

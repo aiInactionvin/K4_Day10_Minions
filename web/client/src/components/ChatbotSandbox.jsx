@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { Send, Bot, User, Sparkles, AlertTriangle, CheckCircle, FileText, BarChart2, Search, Download, Database, Layers, ArrowRight } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Send, Bot, User, Sparkles, AlertTriangle, CheckCircle, FileText, BarChart2, Search, Download, Database, Layers, ArrowRight, X, Code, Copy } from 'lucide-react';
 
 export default function ChatbotSandbox({ cleanPapers = [], onCrawlSubmit }) {
   const [messages, setMessages] = useState([
     {
       id: 1,
       sender: 'bot',
-      text: 'Hello! I am your RAG Assistant. Ask me any question about the ingested research papers. Try toggling between **Data Sạch** vs **Data Đểu** to see how data quality directly impacts my answers!',
+      text: 'Hello! I am your RAG QA Assistant. I am connected to the indexed Crossref scholarly paper corpus. Ask me any technical question or toggle between **Data Sạch**, **Data Đểu**, and **Data Đã Sửa** to see how data quality directly impacts answer faithfulness and LLM hallucinations!',
       sources: [],
       eval: null
     }
@@ -15,11 +15,22 @@ export default function ChatbotSandbox({ cleanPapers = [], onCrawlSubmit }) {
   const [activeMode, setActiveMode] = useState('clean');
   const [isLoading, setIsLoading] = useState(false);
 
-  // Left Sidebar Crawl State
+  // Left Sidebar Crawl & Sources State
   const [crawlTopic, setCrawlTopic] = useState('');
   const [isCrawling, setIsCrawling] = useState(false);
   const [sourceSearch, setSourceSearch] = useState('');
   const [selectedSourceDetail, setSelectedSourceDetail] = useState(null);
+
+  // Auto-scroll ref
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, isLoading]);
 
   const presetQueries = [
     "What is Agentic Retrieval-Augmented Generation?",
@@ -100,34 +111,34 @@ export default function ChatbotSandbox({ cleanPapers = [], onCrawlSubmit }) {
   });
 
   return (
-    <div style={{ padding: '0 32px 32px 32px', display: 'grid', gridTemplateColumns: '340px 1fr', gap: '24px' }}>
+    <div style={{ padding: '0 32px 16px 32px', display: 'grid', gridTemplateColumns: '360px 1fr', gap: '20px', flex: 1, height: '100%', minHeight: 0, overflow: 'hidden' }}>
       
       {/* LEFT SIDEBAR */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', height: '100%', overflow: 'hidden' }}>
         
-        {/* Card 1: Crawl Document Input Tool */}
-        <div className="glass-panel" style={{ padding: '20px', borderLeft: '4px solid var(--accent-cyan)' }}>
-          <h3 style={{ fontSize: '1rem', color: '#ffffff', marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+        {/* Sidebar Header Tool 1: Crawl Crossref Form */}
+        <div className="glass-panel" style={{ padding: '16px', borderLeft: '4px solid var(--accent-cyan)', flexShrink: 0 }}>
+          <h3 style={{ fontSize: '0.95rem', color: '#ffffff', marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Download size={18} color="#06b6d4" />
             Crawl Crossref Papers Tool
           </h3>
-          <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '14px' }}>
-            Describe topic to crawl Crossref REST API & run step-by-step pipeline DAG.
+          <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginBottom: '12px' }}>
+            Enter topic/description to trigger Crossref Ingestion Agent & run pipeline DAG.
           </p>
 
           <form onSubmit={handleCrawlSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             <input
               type="text"
-              placeholder="e.g. Agentic RAG in Healthcare"
+              placeholder="e.g. Agentic RAG in Medical Imaging"
               value={crawlTopic}
               onChange={(e) => setCrawlTopic(e.target.value)}
               disabled={isCrawling}
               style={{
                 width: '100%',
-                background: 'rgba(0, 0, 0, 0.3)',
+                background: 'rgba(0, 0, 0, 0.35)',
                 border: '1px solid var(--border-card)',
                 borderRadius: '8px',
-                padding: '10px 12px',
+                padding: '9px 12px',
                 color: '#ffffff',
                 fontSize: '0.85rem',
                 outline: 'none'
@@ -142,7 +153,7 @@ export default function ChatbotSandbox({ cleanPapers = [], onCrawlSubmit }) {
                 background: 'linear-gradient(135deg, #06b6d4, #3b82f6)',
                 border: 'none',
                 borderRadius: '8px',
-                padding: '10px',
+                padding: '9px',
                 color: '#ffffff',
                 fontWeight: 600,
                 fontSize: '0.85rem',
@@ -155,37 +166,36 @@ export default function ChatbotSandbox({ cleanPapers = [], onCrawlSubmit }) {
               }}
             >
               <Sparkles size={16} />
-              {isCrawling ? 'Crawling Crossref...' : 'Crawl & Run Pipeline DAG'}
+              {isCrawling ? 'Crawling Crossref API...' : 'Crawl & Run Pipeline DAG'}
             </button>
           </form>
         </div>
 
-        {/* Card 2: Cleaned Sources Document Corpus */}
-        <div className="glass-panel" style={{ padding: '20px', display: 'flex', flexDirection: 'column', flex: 1, minHeight: '450px' }}>
+        {/* Sidebar Tool 2: Cleaned Document Sources Corpus */}
+        <div className="glass-panel" style={{ padding: '18px', display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-            <h3 style={{ fontSize: '1rem', color: '#ffffff', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <h3 style={{ fontSize: '0.98rem', color: '#ffffff', display: 'flex', alignItems: 'center', gap: '8px' }}>
               <Database size={18} color="#34d399" />
-              Cleaned Document Sources
+              Cleaned Document Corpus
             </h3>
             <span className="glass-pill" style={{ fontSize: '0.7rem', color: '#34d399' }}>
               {filteredSources.length} Papers
             </span>
           </div>
 
-          {/* Search bar inside sidebar */}
           <div style={{ position: 'relative', marginBottom: '12px' }}>
             <Search size={14} color="var(--text-muted)" style={{ position: 'absolute', left: '10px', top: '10px' }} />
             <input
               type="text"
-              placeholder="Filter cleaned sources..."
+              placeholder="Search cleaned sources by title/DOI..."
               value={sourceSearch}
               onChange={(e) => setSourceSearch(e.target.value)}
               style={{
                 width: '100%',
-                background: 'rgba(0, 0, 0, 0.3)',
+                background: 'rgba(0, 0, 0, 0.35)',
                 border: '1px solid var(--border-card)',
                 borderRadius: '6px',
-                padding: '6px 10px 6px 30px',
+                padding: '7px 10px 7px 30px',
                 color: '#ffffff',
                 fontSize: '0.8rem',
                 outline: 'none'
@@ -193,8 +203,7 @@ export default function ChatbotSandbox({ cleanPapers = [], onCrawlSubmit }) {
             />
           </div>
 
-          {/* Scrollable Document Cards List */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', overflowY: 'auto', maxHeight: '420px', paddingRight: '4px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', flex: 1, overflowY: 'auto', paddingRight: '4px' }}>
             {filteredSources.map((item, idx) => {
               const p = item.clean || item;
               const isSelected = selectedSourceDetail?.paper_id === p.paper_id;
@@ -236,18 +245,26 @@ export default function ChatbotSandbox({ cleanPapers = [], onCrawlSubmit }) {
 
       </div>
 
-      {/* RIGHT MAIN CHATBOT PANEL */}
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
+      {/* RIGHT EXPANDED MAIN CHATBOT WORKSPACE */}
+      <div className="glass-panel" style={{ display: 'flex', flexDirection: 'column', height: '100%', padding: '20px', overflow: 'hidden' }}>
         
-        {/* Top Mode Bar */}
-        <div className="glass-panel" style={{ padding: '16px 20px', marginBottom: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
-          <div>
-            <h2 style={{ fontSize: '1.15rem', color: '#ffffff', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <Bot size={20} color="#818cf8" />
-              RAG QA Agent Sandbox
-            </h2>
+        {/* Chat Workspace Header Bar */}
+        <div style={{ paddingBottom: '14px', marginBottom: '14px', borderBottom: '1px solid var(--border-card)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)', padding: '8px', borderRadius: '10px' }}>
+              <Bot size={22} color="#ffffff" />
+            </div>
+            <div>
+              <h2 style={{ fontSize: '1.2rem', color: '#ffffff' }}>
+                RAG Agent Conversational Workspace
+              </h2>
+              <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
+                Ground truth paper corpus QA engine connected to Chroma Vector DB
+              </p>
+            </div>
           </div>
 
+          {/* Mode Selector Pills */}
           <div style={{ display: 'flex', background: 'rgba(0, 0, 0, 0.4)', padding: '4px', borderRadius: '10px', border: '1px solid var(--border-card)' }}>
             <button
               onClick={() => setActiveMode('clean')}
@@ -308,19 +325,21 @@ export default function ChatbotSandbox({ cleanPapers = [], onCrawlSubmit }) {
           </div>
         </div>
 
-        {/* Preset query chips */}
-        <div style={{ display: 'flex', gap: '8px', marginBottom: '16px', flexWrap: 'wrap' }}>
+        {/* Preset Query Quick Chips */}
+        <div style={{ display: 'flex', gap: '8px', marginBottom: '14px', flexWrap: 'wrap' }}>
           {presetQueries.map((pq, idx) => (
             <button
               key={idx}
               onClick={() => handleSend(pq)}
-              className="glass-panel"
               style={{
                 padding: '6px 12px',
                 fontSize: '0.78rem',
                 color: '#818cf8',
                 cursor: 'pointer',
-                border: '1px solid rgba(99, 102, 241, 0.2)'
+                background: 'rgba(99, 102, 241, 0.1)',
+                border: '1px solid rgba(99, 102, 241, 0.25)',
+                borderRadius: '20px',
+                transition: 'all 0.2s ease'
               }}
             >
               💬 "{pq}"
@@ -328,14 +347,24 @@ export default function ChatbotSandbox({ cleanPapers = [], onCrawlSubmit }) {
           ))}
         </div>
 
-        {/* Messages Box */}
-        <div className="glass-panel" style={{ padding: '20px', minHeight: '380px', maxHeight: '500px', overflowY: 'auto', marginBottom: '16px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        {/* EXPANDED MESSAGES SCROLL CONTAINER */}
+        <div
+          style={{
+            flex: 1,
+            overflowY: 'auto',
+            paddingRight: '8px',
+            marginBottom: '16px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '18px'
+          }}
+        >
           {messages.map(msg => (
             <div
               key={msg.id}
               style={{
                 alignSelf: msg.sender === 'user' ? 'flex-end' : 'flex-start',
-                maxWidth: msg.sender === 'user' ? '75%' : '90%',
+                maxWidth: msg.sender === 'user' ? '70%' : '88%',
                 display: 'flex',
                 gap: '12px'
               }}
@@ -347,41 +376,45 @@ export default function ChatbotSandbox({ cleanPapers = [], onCrawlSubmit }) {
               )}
 
               <div style={{
-                background: msg.sender === 'user' ? 'linear-gradient(135deg, #4f46e5, #6366f1)' : 'rgba(22, 30, 46, 0.8)',
-                padding: '14px 18px',
-                borderRadius: '12px',
-                border: msg.sender === 'user' ? 'none' : '1px solid var(--border-card)',
-                color: '#ffffff'
+                background: msg.sender === 'user' ? 'linear-gradient(135deg, #4f46e5, #6366f1)' : 'rgba(15, 23, 42, 0.8)',
+                padding: '16px 20px',
+                borderRadius: '14px',
+                border: msg.sender === 'user' ? 'none' : '1px solid rgba(255, 255, 255, 0.08)',
+                color: '#ffffff',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.2)'
               }}>
-                <div style={{ fontSize: '0.9rem', whiteSpace: 'pre-wrap', lineHeight: 1.5 }}>
+                <div style={{ fontSize: '0.92rem', whiteSpace: 'pre-wrap', lineHeight: 1.6 }}>
                   {msg.text}
                 </div>
 
+                {/* Evaluation RAG Scores */}
                 {msg.eval && (
-                  <div style={{ marginTop: '12px', paddingTop: '10px', borderTop: '1px solid rgba(255, 255, 255, 0.1)', display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.72rem', color: msg.eval.faithfulness_score > 0.8 ? '#34d399' : '#f87171' }}>
-                      <BarChart2 size={12} /> Faithfulness: {(msg.eval.faithfulness_score * 100).toFixed(0)}%
+                  <div style={{ marginTop: '14px', paddingTop: '12px', borderTop: '1px solid rgba(255, 255, 255, 0.1)', display: 'flex', gap: '18px', flexWrap: 'wrap' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.78rem', color: msg.eval.faithfulness_score > 0.8 ? '#34d399' : '#f87171', fontWeight: 600 }}>
+                      <BarChart2 size={14} /> Faithfulness: {(msg.eval.faithfulness_score * 100).toFixed(0)}%
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.72rem', color: msg.eval.answer_relevance > 0.8 ? '#34d399' : '#f87171' }}>
-                      <BarChart2 size={12} /> Relevance: {(msg.eval.answer_relevance * 100).toFixed(0)}%
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.78rem', color: msg.eval.answer_relevance > 0.8 ? '#34d399' : '#f87171', fontWeight: 600 }}>
+                      <BarChart2 size={14} /> Answer Relevance: {(msg.eval.answer_relevance * 100).toFixed(0)}%
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.72rem', color: msg.eval.context_precision > 0.8 ? '#34d399' : '#f87171' }}>
-                      <BarChart2 size={12} /> Precision: {(msg.eval.context_precision * 100).toFixed(0)}%
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.78rem', color: msg.eval.context_precision > 0.8 ? '#34d399' : '#f87171', fontWeight: 600 }}>
+                      <BarChart2 size={14} /> Context Precision: {(msg.eval.context_precision * 100).toFixed(0)}%
                     </div>
                   </div>
                 )}
 
+                {/* Retrieved Source Citations */}
                 {msg.sources && msg.sources.length > 0 && (
-                  <div style={{ marginTop: '12px', paddingTop: '10px', borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
-                    <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <FileText size={12} color="#06b6d4" />
-                      Retrieved Context Citations:
+                  <div style={{ marginTop: '14px', paddingTop: '12px', borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                    <div style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <FileText size={14} color="#06b6d4" />
+                      Retrieved Ground Truth Citations ({msg.sources.length}):
                     </div>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                       {msg.sources.map((src, idx) => (
-                        <div key={idx} style={{ background: 'rgba(0, 0, 0, 0.3)', padding: '6px 10px', borderRadius: '6px', fontSize: '0.75rem' }}>
-                          <div style={{ color: '#38bdf8', fontWeight: 600 }}>{src.title}</div>
+                        <div key={idx} style={{ background: 'rgba(0, 0, 0, 0.35)', padding: '10px 12px', borderRadius: '8px', fontSize: '0.78rem', borderLeft: '3px solid #06b6d4' }}>
+                          <div style={{ color: '#38bdf8', fontWeight: 600, marginBottom: '2px' }}>{src.title}</div>
                           <div style={{ color: 'var(--text-muted)' }}>Authors: {src.authors}</div>
+                          <div style={{ color: 'var(--text-secondary)', marginTop: '4px', fontStyle: 'italic' }}>"{src.summary_snippet}"</div>
                         </div>
                       ))}
                     </div>
@@ -396,10 +429,24 @@ export default function ChatbotSandbox({ cleanPapers = [], onCrawlSubmit }) {
               )}
             </div>
           ))}
+
+          {/* Typing Indicator */}
+          {isLoading && (
+            <div style={{ alignSelf: 'flex-start', display: 'flex', gap: '12px' }}>
+              <div style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)', padding: '8px', borderRadius: '10px' }}>
+                <Bot size={18} color="#ffffff" />
+              </div>
+              <div style={{ background: 'rgba(15, 23, 42, 0.8)', padding: '12px 18px', borderRadius: '14px', color: 'var(--text-secondary)', fontSize: '0.88rem' }}>
+                🤖 Querying Chroma vector collection and generating answer...
+              </div>
+            </div>
+          )}
+
+          <div ref={messagesEndRef} />
         </div>
 
-        {/* Input Form */}
-        <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} style={{ display: 'flex', gap: '10px' }}>
+        {/* INPUT PROMPT FORM AT BOTTOM */}
+        <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} style={{ display: 'flex', gap: '12px', borderTop: '1px solid var(--border-card)', paddingTop: '14px' }}>
           <input
             type="text"
             placeholder={`Ask a question against [${activeMode.toUpperCase()}] corpus...`}
@@ -408,36 +455,105 @@ export default function ChatbotSandbox({ cleanPapers = [], onCrawlSubmit }) {
             disabled={isLoading}
             style={{
               flex: 1,
-              background: 'var(--bg-card)',
+              background: 'rgba(0, 0, 0, 0.4)',
               border: '1px solid var(--border-card)',
               borderRadius: '10px',
-              padding: '12px 16px',
+              padding: '12px 18px',
               color: '#ffffff',
-              fontSize: '0.9rem',
+              fontSize: '0.92rem',
               outline: 'none'
             }}
           />
           <button
             type="submit"
-            disabled={isLoading}
+            disabled={isLoading || !inputQuery.trim()}
             style={{
               background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
               border: 'none',
               borderRadius: '10px',
-              padding: '0 20px',
+              padding: '0 24px',
               color: '#ffffff',
               fontWeight: 600,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: '6px'
+              gap: '8px',
+              opacity: isLoading || !inputQuery.trim() ? 0.6 : 1
             }}
           >
-            <Send size={16} /> {isLoading ? 'Thinking...' : 'Send'}
+            <Send size={18} /> Send
           </button>
         </form>
 
       </div>
+
+      {/* Paper Detail Inspection Modal Drawer */}
+      {selectedSourceDetail && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'rgba(0, 0, 0, 0.75)',
+          backdropFilter: 'blur(8px)',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 1000,
+          padding: '24px'
+        }}>
+          <div className="glass-panel" style={{ width: '100%', maxWidth: '750px', maxHeight: '85vh', overflowY: 'auto', padding: '24px', borderRadius: '16px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', borderBottom: '1px solid var(--border-card)', paddingBottom: '12px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <FileText size={22} color="#34d399" />
+                <h3 style={{ fontSize: '1.1rem', color: '#ffffff' }}>Inspect Cleaned Paper Record</h3>
+              </div>
+              <button
+                onClick={() => setSelectedSourceDetail(null)}
+                style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer' }}
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              <div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '4px' }}>PAPER ID / DOI</div>
+                <div className="code-font" style={{ fontSize: '0.85rem', color: '#38bdf8' }}>{selectedSourceDetail.paper_id}</div>
+              </div>
+
+              <div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '4px' }}>TITLE</div>
+                <div style={{ fontSize: '1rem', fontWeight: 600, color: '#ffffff' }}>{selectedSourceDetail.title}</div>
+              </div>
+
+              <div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '4px' }}>AUTHORS</div>
+                <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)' }}>{selectedSourceDetail.authors_joined || selectedSourceDetail.authors}</div>
+              </div>
+
+              <div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '4px' }}>ABSTRACT / SUMMARY</div>
+                <div style={{ fontSize: '0.85rem', color: '#ffffff', background: 'rgba(0,0,0,0.3)', padding: '12px', borderRadius: '8px', lineHeight: 1.5 }}>
+                  {selectedSourceDetail.summary}
+                </div>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                <div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '4px' }}>PUBLISHED DATE</div>
+                  <div style={{ fontSize: '0.85rem', color: '#ffffff' }}>{selectedSourceDetail.published}</div>
+                </div>
+                <div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '4px' }}>PRIMARY CATEGORY</div>
+                  <div style={{ fontSize: '0.85rem', color: '#ffffff' }}>{selectedSourceDetail.primary_category || 'Crossref'}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );

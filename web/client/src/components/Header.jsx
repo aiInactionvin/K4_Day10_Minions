@@ -10,7 +10,7 @@ export default function Header({ activeTab, setActiveTab, healthSummary }) {
   ];
 
   return (
-    <header className="glass-panel" style={{ borderRadius: 0, borderTop: 0, borderLeft: 0, borderRight: 0, padding: '16px 32px', marginBottom: '24px' }}>
+    <header className="glass-panel" style={{ borderRadius: 0, borderTop: 0, borderLeft: 0, borderRight: 0, padding: '14px 32px', marginBottom: activeTab === 'chatbot' ? '16px' : '24px', flexShrink: 0 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
         
         {/* Brand logo & title */}

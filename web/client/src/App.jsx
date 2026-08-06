@@ -48,7 +48,7 @@ export default function App() {
     let currentStep = 0;
     const interval = setInterval(() => {
       currentStep += 1;
-      if (currentStep < 6) {
+      if (currentStep < 7) {
         setAnimatingStep(currentStep);
       } else {
         clearInterval(interval);
@@ -56,16 +56,16 @@ export default function App() {
         setAnimatingStep(-1);
         loadAllData(); // reload updated dataset
       }
-    }, 1200); // 1.2s per stage step
+    }, 1100); // 1.1s per stage step
   };
 
   const healthSummary = observabilityData.freshness_summary || {};
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ height: activeTab === 'chatbot' ? '100vh' : 'auto', minHeight: '100vh', display: 'flex', flexDirection: 'column', overflow: activeTab === 'chatbot' ? 'hidden' : 'visible' }}>
       <Header activeTab={activeTab} setActiveTab={setActiveTab} healthSummary={healthSummary} />
 
-      <main style={{ flex: 1 }}>
+      <main style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0, overflow: activeTab === 'chatbot' ? 'hidden' : 'visible' }}>
         {isLoading ? (
           <div style={{ padding: '60px', textAlign: 'center', color: 'var(--text-secondary)' }}>
             Loading Data Observability Metrics...
@@ -92,9 +92,11 @@ export default function App() {
         )}
       </main>
 
-      <footer style={{ padding: '20px 32px', textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.8rem', borderTop: '1px solid var(--border-card)' }}>
-        Minions Data Observability & RAG Evaluation Platform • Day 10 In-Class Lab
-      </footer>
+      {activeTab !== 'chatbot' && (
+        <footer style={{ padding: '20px 32px', textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.8rem', borderTop: '1px solid var(--border-card)' }}>
+          Minions Data Observability & RAG Evaluation Platform • Day 10 In-Class Lab
+        </footer>
+      )}
     </div>
   );
 }
