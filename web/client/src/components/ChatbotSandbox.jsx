@@ -2,6 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Send, Bot, User, Sparkles, AlertTriangle, CheckCircle, FileText, BarChart2, Search, Download, Database, Layers, ArrowRight, X, Code, Copy } from 'lucide-react';
 
 export default function ChatbotSandbox({ cleanPapers = [], onCrawlSubmit }) {
+  const [localPapers, setLocalPapers] = useState(cleanPapers);
+
+  useEffect(() => {
+    setLocalPapers(cleanPapers);
+  }, [cleanPapers]);
+
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -52,6 +58,23 @@ export default function ChatbotSandbox({ cleanPapers = [], onCrawlSubmit }) {
       const data = await res.json();
       if (data.success && data.paper) {
         setCrawlTopic('');
+
+        // Instantly prepend to local sources corpus list
+        setLocalPapers(prev => [data.paper, ...prev]);
+
+        // Post confirmation bot message
+        setMessages(prev => [...prev, {
+          id: Date.now(),
+          sender: 'bot',
+          text: `✅ **Đã Crawl & Thêm Nguồn Bài Báo Mới Vào RAG Corpus**:
+- **Tiêu đề**: "${data.paper.title}"
+- **DOI / ID**: \`${data.paper.paper_id}\`
+- **Chủ đề**: ${data.paper.categories_joined}
+
+Bài báo mới đã được lưu vào hệ thống RAG và sẵn sàng cho việc tìm kiếm semantic QA!`,
+          sources: [data.paper]
+        }]);
+
         if (onCrawlSubmit) {
           onCrawlSubmit(data.paper);
         }
@@ -102,7 +125,7 @@ export default function ChatbotSandbox({ cleanPapers = [], onCrawlSubmit }) {
     }
   };
 
-  const filteredSources = cleanPapers.filter(item => {
+  const filteredSources = localPapers.filter(item => {
     const p = item.clean || item;
     const title = (p.title || '').toLowerCase();
     const authors = (p.authors_joined || p.authors || '').toLowerCase();

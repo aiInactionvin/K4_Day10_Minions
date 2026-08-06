@@ -12,7 +12,7 @@ export default function DataComparison({ comparisonData }) {
 
   const filteredPapers = papers.filter(p => {
     const matchesSearch = p.paper_id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          (p.clean.title || '').toLowerCase().includes(searchTerm.toLowerCase());
+      (p.clean.title || '').toLowerCase().includes(searchTerm.toLowerCase());
     const matchesFilter = filterCorruptedOnly ? p.is_corrupted : true;
     return matchesSearch && matchesFilter;
   });
@@ -21,7 +21,7 @@ export default function DataComparison({ comparisonData }) {
 
   return (
     <div style={{ padding: '0 32px 32px 32px' }}>
-      
+
       {/* Metrics Banner */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px', marginBottom: '24px' }}>
         <div className="glass-panel" style={{ padding: '20px' }}>
@@ -97,7 +97,7 @@ export default function DataComparison({ comparisonData }) {
       {/* Side-by-Side Paper Diff Inspector */}
       {activePaper && (
         <div className="glass-panel" style={{ padding: '24px', marginBottom: '24px' }}>
-          
+
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', paddingBottom: '12px', borderBottom: '1px solid var(--border-card)' }}>
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -124,7 +124,7 @@ export default function DataComparison({ comparisonData }) {
 
           {/* 3 Columns: Clean vs Corrupted vs Repaired */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
-            
+
             {/* Column 1: Clean Baseline */}
             <div className="glass-panel" style={{ padding: '20px', borderTop: '3px solid #10b981' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>

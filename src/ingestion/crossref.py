@@ -98,7 +98,24 @@ def parse_crossref_payload(payload: dict[str, Any]) -> list[PaperRecord]:
             continue
 
         # Extract summary / abstract
-        summary = _clean_text(item.get("abstract", ""))
+        raw_abstract = _clean_text(item.get("abstract", ""))
+        if raw_abstract:
+            summary = raw_abstract
+        else:
+            subtitles = item.get("subtitle", [])
+            sub_text = _clean_text(" ".join(subtitles) if isinstance(subtitles, list) else str(subtitles))
+            containers = item.get("container-title", [])
+            container_text = _clean_text(" ".join(containers) if isinstance(containers, list) else str(containers))
+            publisher_text = _clean_text(item.get("publisher", ""))
+
+            if sub_text:
+                summary = f"{title}. {sub_text}"
+            elif container_text:
+                summary = f"Scholarly article published in {container_text}: {title}"
+            elif publisher_text:
+                summary = f"Scholarly work published by {publisher_text}: {title}"
+            else:
+                summary = f"Scholarly publication indexed on Crossref: {title}"
 
         # Extract authors
         authors: list[str] = []
@@ -256,10 +273,23 @@ def search_crossref_by_prompt(
         filter_query=filter_query,
         session=session,
     )
+    records = parse_crossref_payload(payload)
+
+    # Automatic Fallback: If strict filter returns 0 records, fallback to query without filter
+    if not records and filter_query:
+        logger.info("Strict filter '%s' yielded 0 records for prompt '%s'. Falling back to unfiltered query.", filter_query, prompt)
+        payload = _get_crossref_payload(
+            query=prompt,
+            rows=requested_rows,
+            filter_query=None,
+            session=session,
+        )
+        records = parse_crossref_payload(payload)
+
     return CrossrefSearchBatch(
         prompt=prompt.strip(),
         payload=payload,
-        records=parse_crossref_payload(payload),
+        records=records,
     )
 
 

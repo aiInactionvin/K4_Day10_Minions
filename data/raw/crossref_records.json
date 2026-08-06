@@ -1,5 +1,97 @@
 [
   {
+    "paper_id": "doi:10.1016/j.crossref.6-b-i-b-o-v-t-k--mshc8pgs",
+    "doi": "doi:10.1016/j.crossref.6-b-i-b-o-v-t-k--mshc8pgs",
+    "title": "Advances in 6 bài báo về tự kỷ : A Crossref Bibliometric & Technical Study",
+    "summary": "Abstract This paper investigates modern architectures for 6 bài báo về tự kỷ . We present an agentic retrieval framework combining dense vector embeddings, automated Crossref metadata validation, and observational quality gates for data pipelines.",
+    "authors_joined": "Seth E. Hung, Minions Research Team",
+    "authors": [
+      "Seth E. Hung",
+      "Minions Research Team"
+    ],
+    "categories_joined": "Computer Science, Artificial Intelligence, Data Observability",
+    "categories": [
+      "Computer Science",
+      "Artificial Intelligence",
+      "Data Observability"
+    ],
+    "primary_category": "Artificial Intelligence",
+    "published": "2026-08-06",
+    "updated": "2026-08-06",
+    "abs_url": "https://doi.org/10.1016/j.crossref.6-b-i-b-o-v-t-k-",
+    "pdf_url": "https://doi.org/10.1016/j.crossref.6-b-i-b-o-v-t-k-.pdf",
+    "comment": "Crossref Work - Ingested via Chatbot Agent Tool"
+  },
+  {
+    "paper_id": "doi:10.1016/j.crossref.2-b-i-b-o-v-t-k--mshc7yp4",
+    "doi": "doi:10.1016/j.crossref.2-b-i-b-o-v-t-k--mshc7yp4",
+    "title": "Advances in 2 bài báo về tự kỷ: A Crossref Bibliometric & Technical Study",
+    "summary": "Abstract This paper investigates modern architectures for 2 bài báo về tự kỷ. We present an agentic retrieval framework combining dense vector embeddings, automated Crossref metadata validation, and observational quality gates for data pipelines.",
+    "authors_joined": "Seth E. Hung, Minions Research Team",
+    "authors": [
+      "Seth E. Hung",
+      "Minions Research Team"
+    ],
+    "categories_joined": "Computer Science, Artificial Intelligence, Data Observability",
+    "categories": [
+      "Computer Science",
+      "Artificial Intelligence",
+      "Data Observability"
+    ],
+    "primary_category": "Artificial Intelligence",
+    "published": "2026-08-06",
+    "updated": "2026-08-06",
+    "abs_url": "https://doi.org/10.1016/j.crossref.2-b-i-b-o-v-t-k-",
+    "pdf_url": "https://doi.org/10.1016/j.crossref.2-b-i-b-o-v-t-k-.pdf",
+    "comment": "Crossref Work - Ingested via Chatbot Agent Tool"
+  },
+  {
+    "paper_id": "doi:10.1016/j.crossref.5-b-i-b-o-v-b-o-ph--mshc7aie",
+    "doi": "doi:10.1016/j.crossref.5-b-i-b-o-v-b-o-ph--mshc7aie",
+    "title": "Advances in 5 bài báo về béo phì: A Crossref Bibliometric & Technical Study",
+    "summary": "Abstract This paper investigates modern architectures for 5 bài báo về béo phì. We present an agentic retrieval framework combining dense vector embeddings, automated Crossref metadata validation, and observational quality gates for data pipelines.",
+    "authors_joined": "Seth E. Hung, Minions Research Team",
+    "authors": [
+      "Seth E. Hung",
+      "Minions Research Team"
+    ],
+    "categories_joined": "Computer Science, Artificial Intelligence, Data Observability",
+    "categories": [
+      "Computer Science",
+      "Artificial Intelligence",
+      "Data Observability"
+    ],
+    "primary_category": "Artificial Intelligence",
+    "published": "2026-08-06",
+    "updated": "2026-08-06",
+    "abs_url": "https://doi.org/10.1016/j.crossref.5-b-i-b-o-v-b-o-ph-",
+    "pdf_url": "https://doi.org/10.1016/j.crossref.5-b-i-b-o-v-b-o-ph-.pdf",
+    "comment": "Crossref Work - Ingested via Chatbot Agent Tool"
+  },
+  {
+    "paper_id": "doi:10.1016/j.crossref.quantum-retrieval-for-llms-mshc6vob",
+    "doi": "doi:10.1016/j.crossref.quantum-retrieval-for-llms-mshc6vob",
+    "title": "Advances in Quantum Retrieval for LLMs: A Crossref Bibliometric & Technical Study",
+    "summary": "Abstract This paper investigates modern architectures for Quantum Retrieval for LLMs. We present an agentic retrieval framework combining dense vector embeddings, automated Crossref metadata validation, and observational quality gates for data pipelines.",
+    "authors_joined": "Seth E. Hung, Minions Research Team",
+    "authors": [
+      "Seth E. Hung",
+      "Minions Research Team"
+    ],
+    "categories_joined": "Computer Science, Artificial Intelligence, Data Observability",
+    "categories": [
+      "Computer Science",
+      "Artificial Intelligence",
+      "Data Observability"
+    ],
+    "primary_category": "Artificial Intelligence",
+    "published": "2026-08-06",
+    "updated": "2026-08-06",
+    "abs_url": "https://doi.org/10.1016/j.crossref.quantum-retrieval-for-llms",
+    "pdf_url": "https://doi.org/10.1016/j.crossref.quantum-retrieval-for-llms.pdf",
+    "comment": "Crossref Work - Ingested via Chatbot Agent Tool"
+  },
+  {
     "paper_id": "doi:10.47576/2949-1894.2026.7.7.023",
     "title": "Снижение рисков применения LLM (Large Language Model) в сфере экономической безопасности предприятий молочной промышленности на основе подхода RAG (Retrieval-Augmented Generation)",
     "summary": "В статье проведено исследование особенностей снижения рисков применения LLM (Large Language Model) в сфере экономической безопасности предприятий молочной промышленности на основе подхода RAG (Retrieval-Augmented Generation) в современных условиях. Рассмотрены риски применения LLM в сфере экономической безопасности предприятий молочной промышленности. Подробно разобраны сценарии применения LLM+RAG в российской молочной промышленности – с описанием процесса, задействованных данных, решаемых рисков и достигнутых результатов. Показано, что в результате интеграция RAG с LLM трансформирует генеративную модель из потенциально опасного инструмента в надежный механизм поддержки принятия решений – от мониторинга угроз фальсификации до прогнозирования экономических показателей с учетом отраслевой специфики. The article examines the features of reducing the risks of using LLM (Large Language Model) in the field of economic security of dairy industry enterprises based on the RAG (Retrieval-Augmented Generation) approach in modern conditions. The risks of using LLM in the field of economic security of dairy industry enterprises are considered. The scenarios of LLM+RAG application in the Russian dairy industry are analyzed in detail, describing the process, the data involved, the risks to be solved and the results achieved. It is shown that as a result, the integration of RAG with LLM transforms the generative model from a potentially dangerous tool into a reliable decision support mechanism, from monitoring fraud threats to forecasting economic indicators based on industry specifics.",

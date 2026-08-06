@@ -378,8 +378,19 @@ Cảnh báo: Câu trả lời LLM có nguy cơ **hallucination** cao do MiniLMEm
   };
 }
 
+function saveJsonFile(filePath, data) {
+  try {
+    const dir = path.dirname(filePath);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
+  } catch (err) {
+    console.error(`Error writing to ${filePath}:`, err.message);
+  }
+}
+
 export function crawlCrossrefPaper(topic) {
-  const clean = getCleanPapers();
   const timestamp = Date.now();
   const slug = topic.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 30);
   const paperId = `doi:10.1016/j.crossref.${slug}-${timestamp.toString(36)}`;
@@ -401,8 +412,23 @@ export function crawlCrossrefPaper(topic) {
     comment: "Crossref Work - Ingested via Chatbot Agent Tool"
   };
 
-  // Add to clean memory list
-  clean.unshift(newPaper);
+  // 1. Persist to data/clean/papers_clean.json
+  const cleanPath = path.join(DATA_DIR, 'clean', 'papers_clean.json');
+  const cleanPapers = readJsonFile(cleanPath, []) || [];
+  cleanPapers.unshift(newPaper);
+  saveJsonFile(cleanPath, cleanPapers);
+
+  // 2. Persist to data/raw/crossref_records.json
+  const rawPath = path.join(DATA_DIR, 'raw', 'crossref_records.json');
+  const rawRecords = readJsonFile(rawPath, []) || [];
+  rawRecords.unshift(newPaper);
+  saveJsonFile(rawPath, rawRecords);
+
+  // 3. Persist to data/clean/papers_clean_repaired.json
+  const repairedPath = path.join(DATA_DIR, 'clean', 'papers_clean_repaired.json');
+  const repairedPapers = readJsonFile(repairedPath, []) || [];
+  repairedPapers.unshift(newPaper);
+  saveJsonFile(repairedPath, repairedPapers);
 
   return {
     success: true,
