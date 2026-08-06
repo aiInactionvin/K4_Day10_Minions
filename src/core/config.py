@@ -52,6 +52,7 @@ class Settings:
     ollama_base_url: str
     custom_llm_api_key: str | None
     custom_llm_base_url: str | None
+    embedding_provider: str
     embedding_model: str
     baseline_collection_name: str
     corrupted_collection_name: str
@@ -82,6 +83,14 @@ def load_settings(project_dir: Path | None = None) -> Settings:
     # The bundled default is valid only for Gemini. Requiring LLM_MODEL for
     # another provider avoids silently sending a Gemini model name to it.
     model_name = configured_model or ("gemini-2.5-flash" if normalized_llm_provider == "gemini" else "")
+    embedding_provider = os.getenv("EMBEDDING_PROVIDER", "minilm").strip().lower().replace(" ", "").replace("-", "")
+    embedding_model = os.getenv("EMBEDDING_MODEL")
+    if not embedding_model:
+        embedding_model = (
+            "text-embedding-3-small"
+            if embedding_provider == "openai"
+            else "sentence-transformers/all-MiniLM-L6-v2"
+        )
 
     data_dir = root / "data"
     paths = Paths(
@@ -126,7 +135,8 @@ def load_settings(project_dir: Path | None = None) -> Settings:
         ollama_base_url=os.getenv("OLLAMA_BASE_URL", "http://localhost:11434"),
         custom_llm_api_key=os.getenv("CUSTOM_LLM_API_KEY"),
         custom_llm_base_url=os.getenv("CUSTOM_LLM_BASE_URL"),
-        embedding_model="sentence-transformers/all-MiniLM-L6-v2",
+        embedding_provider=embedding_provider,
+        embedding_model=embedding_model,
         baseline_collection_name="papers-baseline",
         corrupted_collection_name="papers-corrupted",
         repaired_collection_name="papers-repaired",
@@ -149,6 +159,24 @@ def normalized_provider(settings: Settings) -> str:
     if provider == "customllm":
         return "custom"
     return provider
+
+
+def normalized_embedding_provider(settings: Settings) -> str:
+    provider = settings.embedding_provider.strip().lower().replace(" ", "").replace("-", "")
+    if provider in {"sentence_transformers", "sentencetransformers", "local", "minilm"}:
+        return "minilm"
+    return provider
+
+
+def require_embedding_credentials(settings: Settings) -> None:
+    provider = normalized_embedding_provider(settings)
+    if provider == "openai":
+        if settings.openai_api_key:
+            return
+        raise RuntimeError("OPENAI_API_KEY is required when EMBEDDING_PROVIDER=openai.")
+    if provider == "minilm":
+        return
+    raise RuntimeError("Unsupported EMBEDDING_PROVIDER. Expected one of: openai, minilm.")
 
 
 def require_llm_credentials(settings: Settings) -> None:

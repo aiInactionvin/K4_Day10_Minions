@@ -1,0 +1,10 @@
+{
+  "latest_published": "2026-07-03",
+  "oldest_published": "2021-05-22",
+  "stale_rows": 3,
+  "total_rows": 24,
+  "is_fresh": false,
+  "threshold_days": 180,
+  "max_age_days": 1902,
+  "source_timestamp_column": "published"
+}

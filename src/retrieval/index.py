@@ -11,9 +11,9 @@ import chromadb
 from chromadb.errors import NotFoundError
 import pandas as pd
 
-from core.config import Settings
+from core.config import Settings, normalized_embedding_provider
 from core.utils import normalize_whitespace, read_json, safe_slug, write_json
-from retrieval.embeddings import MiniLMEmbeddings
+from retrieval.embeddings import build_embedding_client
 
 
 IndexState = Literal["baseline", "corrupted", "repaired"]
@@ -30,7 +30,7 @@ REQUIRED_COLUMNS = (
     "pdf_url",
 )
 REQUIRED_TEXT_COLUMNS = ("paper_id", "title", "text_for_embedding")
-MANIFEST_SCHEMA_VERSION = 1
+MANIFEST_SCHEMA_VERSION = 2
 
 
 @dataclass(frozen=True)
@@ -99,7 +99,7 @@ class LocalEmbeddingIndex:
         self.documents = documents
         self.persist_path = persist_path
         self.embedding_backend = "chroma"
-        self.embedding_model = MiniLMEmbeddings(settings.embedding_model)
+        self.embedding_model = build_embedding_client(settings)
         self.client = chromadb.PersistentClient(path=str(persist_path))
         self.collection = self.client.get_collection(name=collection_name)
 
@@ -128,6 +128,8 @@ class LocalEmbeddingIndex:
                 )
         collection_metadata = self.collection.metadata or {}
         expected_fingerprint = _documents_fingerprint(documents)
+        if collection_metadata.get("embedding_provider") != normalized_embedding_provider(settings):
+            raise RuntimeError(f"Chroma collection '{collection_name}' uses a different embedding provider.")
         if collection_metadata.get("embedding_model") != settings.embedding_model:
             raise RuntimeError(f"Chroma collection '{collection_name}' uses a different embedding model.")
         if collection_metadata.get("data_fingerprint") != expected_fingerprint:
@@ -263,7 +265,7 @@ class LocalEmbeddingIndex:
 
         # Finish all deterministic and model-dependent validation before replacing a
         # previously healthy collection.
-        embedding_model = MiniLMEmbeddings(settings.embedding_model)
+        embedding_model = build_embedding_client(settings)
         embeddings = embedding_model.embed_documents([document["content"] for document in documents])
         embedding_dimension = cls._validate_embeddings(embeddings, len(documents))
         fingerprint = _documents_fingerprint(documents)
@@ -281,6 +283,7 @@ class LocalEmbeddingIndex:
         collection = client.create_collection(
             name=collection_name,
             metadata={
+                "embedding_provider": normalized_embedding_provider(settings),
                 "embedding_model": settings.embedding_model,
                 "data_fingerprint": fingerprint,
                 "index_state": state,
@@ -304,6 +307,7 @@ class LocalEmbeddingIndex:
                 "schema_version": MANIFEST_SCHEMA_VERSION,
                 "backend": "chroma",
                 "state": state,
+                "embedding_provider": normalized_embedding_provider(settings),
                 "embedding_model": settings.embedding_model,
                 "embedding_dimension": embedding_dimension,
                 "persist_path": str(persist_path),
@@ -338,6 +342,7 @@ class LocalEmbeddingIndex:
             "schema_version",
             "backend",
             "state",
+            "embedding_provider",
             "embedding_model",
             "embedding_dimension",
             "persist_path",
@@ -355,6 +360,11 @@ class LocalEmbeddingIndex:
             raise ValueError(f"Unsupported embedding backend: {payload['backend']}")
         if payload["state"] not in {"baseline", "corrupted", "repaired", "custom"}:
             raise ValueError(f"Unsupported embedding index state: {payload['state']}")
+        if payload["embedding_provider"] != normalized_embedding_provider(settings):
+            raise ValueError(
+                "Embedding provider mismatch: manifest uses "
+                f"'{payload['embedding_provider']}', settings use '{normalized_embedding_provider(settings)}'."
+            )
         if payload["embedding_model"] != settings.embedding_model:
             raise ValueError(
                 "Embedding model mismatch: manifest uses "

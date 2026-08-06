@@ -1,0 +1,67 @@
+{
+  "report_name": "baseline_quality",
+  "status": "pass",
+  "total_rows": 24,
+  "failed_checks": [],
+  "signals": {
+    "row_count": 24,
+    "nulls": {
+      "paper_id": 0,
+      "title": 0,
+      "summary": 0,
+      "published": 0
+    },
+    "duplicates": {
+      "paper_id": 0,
+      "title": 0
+    },
+    "age_days": {
+      "max": 175,
+      "stale_rows": 0,
+      "threshold_days": 180
+    },
+    "source_timestamp_column": "published"
+  },
+  "checks": {
+    "row_count": {
+      "status": "pass",
+      "value": 24,
+      "minimum": 10
+    },
+    "paper_id_not_null": {
+      "status": "pass",
+      "null_count": 0
+    },
+    "paper_id_unique": {
+      "status": "pass",
+      "duplicate_count": 0
+    },
+    "title_not_null": {
+      "status": "pass",
+      "null_count": 0
+    },
+    "summary_not_null": {
+      "status": "pass",
+      "null_count": 0
+    },
+    "summary_length": {
+      "status": "pass",
+      "short_summary_count": 0,
+      "minimum_chars": 80
+    },
+    "published_not_null": {
+      "status": "pass",
+      "null_count": 0
+    },
+    "freshness_age_days": {
+      "status": "pass",
+      "stale_rows": 0,
+      "max_age_days": 175,
+      "threshold_days": 180
+    },
+    "title_duplicate_signal": {
+      "status": "pass",
+      "duplicate_count": 0
+    }
+  }
+}

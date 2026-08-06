@@ -1,0 +1,73 @@
+{
+  "report_name": "corrupted_quality",
+  "status": "fail",
+  "total_rows": 24,
+  "failed_checks": [
+    "paper_id_unique",
+    "summary_not_null",
+    "summary_length",
+    "freshness_age_days",
+    "title_duplicate_signal"
+  ],
+  "signals": {
+    "row_count": 24,
+    "nulls": {
+      "paper_id": 0,
+      "title": 0,
+      "summary": 3,
+      "published": 0
+    },
+    "duplicates": {
+      "paper_id": 3,
+      "title": 3
+    },
+    "age_days": {
+      "max": 1902,
+      "stale_rows": 3,
+      "threshold_days": 180
+    },
+    "source_timestamp_column": "published"
+  },
+  "checks": {
+    "row_count": {
+      "status": "pass",
+      "value": 24,
+      "minimum": 10
+    },
+    "paper_id_not_null": {
+      "status": "pass",
+      "null_count": 0
+    },
+    "paper_id_unique": {
+      "status": "fail",
+      "duplicate_count": 3
+    },
+    "title_not_null": {
+      "status": "pass",
+      "null_count": 0
+    },
+    "summary_not_null": {
+      "status": "fail",
+      "null_count": 3
+    },
+    "summary_length": {
+      "status": "fail",
+      "short_summary_count": 3,
+      "minimum_chars": 80
+    },
+    "published_not_null": {
+      "status": "pass",
+      "null_count": 0
+    },
+    "freshness_age_days": {
+      "status": "fail",
+      "stale_rows": 3,
+      "max_age_days": 1902,
+      "threshold_days": 180
+    },
+    "title_duplicate_signal": {
+      "status": "fail",
+      "duplicate_count": 3
+    }
+  }
+}
