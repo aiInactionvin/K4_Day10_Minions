@@ -19,7 +19,7 @@ from ingestion.crossref import (
 )
 from retrieval.agent import build_agent, run_agent_question_with_trace
 from retrieval.discovery import semantic_rerank_records
-from retrieval.embeddings import MiniLMEmbeddings
+from retrieval.embeddings import build_embedding_client
 from retrieval.index import LocalEmbeddingIndex
 from retrieval.qa import answer_question
 
@@ -118,7 +118,7 @@ def run_prompt_ingestion(
         rows=requested_candidates,
         filter_query=crossref_filter,
     )
-    embedding_backend = MiniLMEmbeddings(active_settings.embedding_model)
+    embedding_backend = build_embedding_client(active_settings)
     unique_candidates = merge_raw_records([], batch.records)
     ranked_candidates = semantic_rerank_records(
         normalized_prompt,

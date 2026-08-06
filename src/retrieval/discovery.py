@@ -3,9 +3,10 @@ from __future__ import annotations
 from dataclasses import dataclass
 import math
 
+from langchain_core.embeddings import Embeddings
+
 from core.utils import normalize_whitespace
 from ingestion.crossref import PaperRecord
-from retrieval.embeddings import MiniLMEmbeddings
 
 
 @dataclass(frozen=True)
@@ -55,7 +56,7 @@ def _cosine_similarity(left: list[float], right: list[float]) -> float:
 def semantic_rerank_records(
     prompt: str,
     records: list[PaperRecord],
-    embeddings: MiniLMEmbeddings,
+    embeddings: Embeddings,
     *,
     limit: int,
     prompt_chunk_words: int = 80,

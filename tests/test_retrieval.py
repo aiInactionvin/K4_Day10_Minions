@@ -88,7 +88,10 @@ class LocalEmbeddingIndexTests(unittest.TestCase):
         self.temporary_directory = tempfile.TemporaryDirectory()
         self.addCleanup(self.temporary_directory.cleanup)
         self.settings = load_settings(Path(self.temporary_directory.name))
-        self.embedding_patch = patch("retrieval.index.MiniLMEmbeddings", FakeEmbeddings)
+        self.embedding_patch = patch(
+            "retrieval.index.build_embedding_client",
+            return_value=FakeEmbeddings(self.settings.embedding_model),
+        )
         self.embedding_patch.start()
         self.addCleanup(self.embedding_patch.stop)
 
@@ -108,7 +111,8 @@ class LocalEmbeddingIndexTests(unittest.TestCase):
                 index.search("retrieval", top_k=invalid_top_k)  # type: ignore[arg-type]
 
         manifest = read_json(self.settings.paths.embeddings_json)
-        self.assertEqual(manifest["schema_version"], 1)
+        self.assertEqual(manifest["schema_version"], 2)
+        self.assertEqual(manifest["embedding_provider"], "minilm")
         self.assertEqual(manifest["state"], "baseline")
         self.assertEqual(manifest["document_count"], 3)
         self.assertEqual(manifest["embedding_dimension"], 4)

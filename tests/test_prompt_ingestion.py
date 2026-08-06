@@ -171,7 +171,7 @@ def test_prompt_pipeline_persists_source_clean_index_trace_and_answer(tmp_path: 
         "pipelines.prompt_ingestion.search_crossref_by_prompt",
         return_value=batch,
     ), patch(
-        "pipelines.prompt_ingestion.MiniLMEmbeddings",
+        "pipelines.prompt_ingestion.build_embedding_client",
         return_value=FakeEmbeddings(),
     ), patch(
         "pipelines.prompt_ingestion.LocalEmbeddingIndex.build_for_state",
